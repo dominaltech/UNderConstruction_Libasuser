@@ -3,204 +3,384 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧵</text></svg>"/>
-<title>Libas Collection – Threads of Trust</title>
+<title>Libas Collection – Portfolio</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23180626'/><text x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-size='20'>🧵</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="dns-prefetch" href="https://hkdenuzxxrcvcgtbqgxq.supabase.co"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
-<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
 <style>
+/* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:auto}
+html{scroll-behavior:smooth}
 body{font-family:'Lato',sans-serif;background:#FDFAF2;color:#2D1458;min-height:100vh}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:#FDFAF2}
 ::-webkit-scrollbar-thumb{background:#D4AF37;border-radius:3px}
 
+/* ── KEYFRAMES ── */
 @keyframes shimmer{0%{background-position:-400% center}100%{background-position:400% center}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes floatIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 @keyframes skeletonPulse{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes waRing{0%{box-shadow:0 0 0 0 rgba(212,175,55,.65)}70%{box-shadow:0 0 0 11px rgba(212,175,55,0)}100%{box-shadow:0 0 0 0 rgba(212,175,55,0)}}
+@keyframes revealUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes revealLeft{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:translateX(0)}}
+@keyframes revealScale{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes iconPop{0%{opacity:0;transform:translateY(14px) scale(.78)}100%{opacity:1;transform:translateY(0) scale(1)}}
 
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;will-change:transform,opacity}
+.reveal.visible{animation:revealUp .65s cubic-bezier(.22,1,.36,1) both}
+.reveal-left.visible{animation:revealLeft .65s cubic-bezier(.22,1,.36,1) both}
+.reveal-scale.visible{animation:revealScale .55s cubic-bezier(.22,1,.36,1) both}
+.d1{animation-delay:.05s!important}
+.d2{animation-delay:.13s!important}
+.d3{animation-delay:.21s!important}
+.d4{animation-delay:.29s!important}
+
+/* ── UTILITY ── */
 .gold-text{background:linear-gradient(90deg,#C9A020,#E8CC6A,#C9A020,#E8CC6A,#C9A020);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
-.fade-up{animation:fadeUp .4s ease both}
 .cinzel{font-family:'Cinzel',serif}
 .cormorant{font-family:'Cormorant Garamond',serif}
+.spinner{width:36px;height:36px;border:3px solid rgba(212,175,55,.2);border-top-color:#D4AF37;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto}
 
-.btn-gold{background:linear-gradient(135deg,#C9A020,#E8CC6A,#C9A020);background-size:200% auto;color:#180626;font-family:'Cinzel',serif;font-weight:700;letter-spacing:1.5px;border:none;cursor:pointer;transition:background-position .3s,box-shadow .3s,transform .2s;font-size:12px}
-.btn-gold:hover{background-position:right center;box-shadow:0 6px 24px rgba(212,175,55,.55);transform:translateY(-1px)}
-.btn-purple{background:#3B0764;color:#E8CC6A;font-family:'Cinzel',serif;font-weight:600;letter-spacing:1px;border:1px solid #D4AF37;cursor:pointer;transition:background .2s;font-size:12px}
-.btn-purple:hover{background:#5B21B6}
-.btn-outline{background:transparent;color:#D4AF37;font-family:'Cinzel',serif;font-weight:600;letter-spacing:1px;border:1px solid #D4AF37;cursor:pointer;transition:all .2s;font-size:12px}
-.btn-outline:hover{background:#D4AF37;color:#180626}
-
-.nav-link{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.5px;color:#E8CC6A;cursor:pointer;background:none;border:none;padding:4px 0;position:relative;transition:color .2s}
+/* ── NAV ── */
+.nav-link{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.5px;color:#E8CC6A;background:none;border:none;padding:4px 0;position:relative;transition:color .2s;text-decoration:none;display:inline-block;cursor:pointer}
 .nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#D4AF37;transition:width .25s}
 .nav-link:hover::after{width:100%}
 .nav-link:hover{color:#fff}
 
-.card-hover{transition:transform .2s,box-shadow .2s}
-.card-hover:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(59,7,100,.16)}
+/* ── SVG HAMBURGER ── */
+.ham-btn{display:none;background:none;border:none;cursor:pointer;padding:6px;line-height:0;width:40px;height:40px;align-items:center;justify-content:center;border-radius:8px;transition:background .2s}
+.ham-btn:hover{background:rgba(212,175,55,.1)}
+.ham-svg{overflow:visible;display:block}
+.hline{fill:none;stroke:#E8CC6A;stroke-width:2.2;stroke-linecap:round;transition:d .44s cubic-bezier(.76,0,.24,1),opacity .3s,stroke .25s}
 
-.filter-chip{background:transparent;border:1px solid rgba(212,175,55,.4);color:#2D1458;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:13px;font-family:'Lato',sans-serif;transition:all .15s}
-.filter-chip:hover,.filter-chip.active{background:#3B0764;border-color:#D4AF37;color:#E8CC6A}
+/* ── MOBILE MENU (max-height slide) ── */
+#mobileMenu{background:linear-gradient(180deg,#1c0438,#3B0764);border-top:1px solid rgba(212,175,55,.2);overflow:hidden;max-height:0;transition:max-height .5s cubic-bezier(.76,0,.24,1)}
+#mobileMenu.menu-open{max-height:420px}
+.mnav-item{display:flex;align-items:center;gap:12px;padding:15px 22px;border-bottom:1px solid rgba(212,175,55,.08);position:relative;overflow:hidden;transition:background .2s;cursor:pointer}
+.mnav-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#C9A020,#E8CC6A);transform:scaleY(0);transition:transform .28s;transform-origin:bottom}
+.mnav-item:hover::before{transform:scaleY(1)}
+.mnav-item:hover{background:rgba(212,175,55,.07)}
+.mnav-num{font-family:'Cinzel',serif;font-size:9px;color:rgba(212,175,55,.38);letter-spacing:1px;min-width:20px}
+.mnav-link{font-family:'Cinzel',serif;font-size:13px;letter-spacing:1px;color:#E8CC6A;text-decoration:none;flex:1;transition:color .2s}
+.mnav-link:hover{color:#fff}
+.mnav-arrow{color:rgba(212,175,55,.28);font-size:15px;transition:transform .2s,color .2s}
+.mnav-item:hover .mnav-arrow{transform:translateX(4px);color:#D4AF37}
 
-.input-field{width:100%;padding:10px 14px;border:1px solid rgba(212,175,55,.4);border-radius:6px;background:#fff;font-family:'Lato',sans-serif;font-size:14px;color:#2D1458;outline:none;transition:border-color .2s}
-.input-field:focus{border-color:#7C3AED}
+/* ── CARDS ── */
+.card-hover{transition:transform .25s,box-shadow .25s}
+.card-hover:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(59,7,100,.18)}
+.portfolio-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid rgba(212,175,55,.2);box-shadow:0 4px 16px rgba(59,7,100,.07)}
+.portfolio-card-dark{background:rgba(255,255,255,.06);border-radius:14px;overflow:hidden;border:1px solid rgba(212,175,55,.15);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.portfolio-grid{display:grid;grid-template-columns:1fr;gap:28px;max-width:700px;margin:0 auto}
+.skeleton{background:linear-gradient(90deg,#e8e0d4 25%,#f5ead6 50%,#e8e0d4 75%);background-size:200% 100%;animation:skeletonPulse 1.2s ease infinite;border-radius:6px}
+.skeleton-dark{background:linear-gradient(90deg,rgba(255,255,255,.06) 25%,rgba(255,255,255,.12) 50%,rgba(255,255,255,.06) 75%);background-size:200% 100%;animation:skeletonPulse 1.2s ease infinite;border-radius:6px}
 
-.tag-new{background:linear-gradient(135deg,#C9A020,#E8CC6A);color:#180626;font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:2px;padding:2px 9px;border-radius:2px;text-transform:uppercase}
-.badge{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;background:#C9A020;color:#180626;border-radius:50%;font-size:10px;font-weight:700;padding:0 3px}
-.spinner{width:36px;height:36px;border:3px solid rgba(212,175,55,.2);border-top-color:#D4AF37;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto}
-
+/* ── ORNAMENTS ── */
 .ornament-line{display:flex;align-items:center;gap:10px;margin:6px 0}
 .ornament-line::before,.ornament-line::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,#D4AF37,transparent)}
 .divider-text{color:#C9A020;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;white-space:nowrap;opacity:.8}
 
-.dropdown{position:relative}
-.dropdown-menu{position:absolute;top:100%;left:0;background:#3B0764;border:1px solid rgba(212,175,55,.3);border-radius:8px;padding:8px;min-width:160px;z-index:400;box-shadow:0 12px 32px rgba(0,0,0,.4);animation:floatIn .15s ease;display:none}
-.dropdown:hover .dropdown-menu{display:block}
-.dropdown-item{display:block;width:100%;padding:8px 12px;border:none;background:none;color:#E8CC6A;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.5px;cursor:pointer;border-radius:4px;text-align:left;transition:background .15s}
-.dropdown-item:hover{background:rgba(212,175,55,.15)}
-
-/* BANNER */
-.banner-slider{position:relative;overflow:hidden;background:#180626;height:460px;contain:layout style}
+/* ── BANNER ── */
+.banner-slider{position:relative;overflow:hidden;background:#180626;height:460px}
 .banner-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;pointer-events:none}
 .banner-slide.active{opacity:1;pointer-events:auto;z-index:1}
-.banner-slide img{width:100%;height:100%;object-fit:cover;display:block}
 .banner-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;transition:all .25s;padding:0}
 .banner-dot.active{background:#D4AF37;width:28px;border-radius:5px}
 .banner-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);border:1px solid rgba(212,175,55,.4);color:#E8CC6A;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:background .2s;z-index:5}
 .banner-arrow:hover{background:rgba(212,175,55,.3)}
 
-/* SKELETON */
-.skeleton{background:linear-gradient(90deg,#e8e0d4 25%,#f5ead6 50%,#e8e0d4 75%);background-size:200% 100%;animation:skeletonPulse 1.2s ease infinite;border-radius:6px}
+/* ── CARD SLIDER ── */
+.pcard-track{display:flex;transition:transform .35s cubic-bezier(.25,.46,.45,.94);height:100%}
+.pcard-slide{min-width:100%;height:100%;overflow:hidden;flex-shrink:0}
+.pcard-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);border:1px solid rgba(212,175,55,.4);color:#E8CC6A;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:5;transition:background .2s}
+.pcard-arrow:hover{background:rgba(212,175,55,.35)}
+.pcard-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:5}
+.pcard-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;padding:0;transition:all .2s}
+.pcard-dot.active{background:#D4AF37;width:20px;border-radius:4px}
 
-/* PRODUCT IMAGE SLIDER */
-.prod-img-slider{position:relative;overflow:hidden;border-radius:12px;border:1px solid rgba(212,175,55,.2);background:#f8f4ee;user-select:none;contain:layout style}
-.prod-img-track{display:flex;transition:transform .35s cubic-bezier(.25,.46,.45,.94);height:100%}
-.prod-img-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.prod-img-slide img{width:100%;height:100%;object-fit:contain;display:block}
-.prod-thumb{width:60px;height:60px;border-radius:6px;object-fit:cover;border:2px solid transparent;cursor:pointer;transition:opacity .15s,border-color .15s;opacity:.7}
-.prod-thumb:hover{opacity:1}
-.prod-thumb.active{border-color:#D4AF37;opacity:1}
-.prod-img-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:1px solid rgba(212,175,55,.3);color:#3B0764;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .15s;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.prod-img-arrow:hover{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+/* ── HERO CONTACT BUTTONS ── */
+.hero-contacts{display:flex;gap:13px;flex-wrap:wrap;margin-top:34px}
+.hc-btn{display:flex;align-items:center;gap:9px;text-decoration:none;padding:9px 16px 9px 10px;border:1px solid rgba(212,175,55,.32);border-radius:50px;background:rgba(255,255,255,.05);backdrop-filter:blur(8px);transition:background .25s,border-color .25s,transform .2s,box-shadow .2s;animation:iconPop .5s cubic-bezier(.22,1,.36,1) both;opacity:0}
+.hc-btn:nth-child(1){animation-delay:.55s;animation-fill-mode:both}
+.hc-btn:nth-child(2){animation-delay:.66s;animation-fill-mode:both}
+.hc-btn:nth-child(3){animation-delay:.77s;animation-fill-mode:both}
+.hc-btn:nth-child(4){animation-delay:.88s;animation-fill-mode:both}
+.hc-btn:hover{background:rgba(212,175,55,.18);border-color:rgba(212,175,55,.72);transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,175,55,.22)}
+.hc-icon{width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(212,175,55,.12);flex-shrink:0;transition:background .25s}
+.hc-btn:hover .hc-icon{background:rgba(212,175,55,.28)}
+.hc-wa-btn .hc-icon{animation:waRing 2.3s ease-out infinite}
+.hc-text{display:flex;flex-direction:column;line-height:1.28}
+.hc-label{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;color:rgba(212,175,55,.6)}
+.hc-value{font-family:'Lato',sans-serif;font-size:11px;color:rgba(255,255,255,.85);letter-spacing:.3px}
 
-/* LIGHTBOX */
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9000;display:flex;align-items:center;justify-content:center;animation:fadeUp .2s ease}
-.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
-.lightbox-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:background .2s}
-.lightbox-close:hover{background:rgba(255,255,255,.3)}
+/* ── SPARK CANVAS ── */
+#sparkCanvas{position:fixed;inset:0;pointer-events:none;z-index:9998}
 
-/* BACK BUTTON */
-.back-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(59,7,100,.08);border:1px solid rgba(212,175,55,.3);color:#5B21B6;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;padding:7px 14px;border-radius:20px;cursor:pointer;transition:all .2s;margin-bottom:18px}
-.back-btn:hover{background:#3B0764;color:#E8CC6A;border-color:#D4AF37}
-.back-btn-sticky{position:fixed;top:104px;left:18px;z-index:200;display:inline-flex;align-items:center;gap:6px;background:rgba(253,250,242,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(212,175,55,.45);color:#3B0764;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;padding:8px 16px;border-radius:24px;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(59,7,100,.15)}
-.back-btn-sticky:hover{background:#3B0764;color:#E8CC6A;border-color:#D4AF37;box-shadow:0 6px 24px rgba(59,7,100,.3)}
-@media(max-width:768px){.back-btn-sticky{top:auto;bottom:22px;left:50%;transform:translateX(-190%);white-space:nowrap}}
-
+/* ── RESPONSIVE ── */
 @media(max-width:768px){
-  .desktop-nav{display:none!important}
-  .mobile-btn{display:flex!important}
-  .product-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important}
-  .detail-grid{grid-template-columns:1fr!important}
-  .sidebar-panel{display:none!important}
-  .footer-grid{grid-template-columns:1fr!important}
-  .hero-actions{flex-direction:column!important;align-items:flex-start!important}
-  .banner-slide img{height:280px!important}
-  .banner-slider{height:280px!important}
-  .prod-img-slider{min-height:280px!important}
+  .desktop-nav{display:none !important}
+  .ham-btn{display:flex !important}
+  .footer-grid{grid-template-columns:1fr !important}
+  .banner-slider{height:260px !important}
+  .portfolio-grid{gap:16px !important;max-width:100% !important}
+  .pcard-split{flex-direction:column !important}
+  .pcard-split .pcard-img-panel{flex:0 0 220px !important;min-height:220px !important}
+  .section-pad{padding:40px 16px !important}
+  .hc-text{display:none}
+  .hc-btn{padding:9px}
+  .hero-contacts{gap:10px}
 }
-
-/* Thaan modal */
-#thaanModal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);align-items:center;justify-content:center}
-#thaanModal.open{display:flex}
-.thaan-box{background:linear-gradient(145deg,#1a0535,#2d0a5e);border:1px solid rgba(212,175,55,.4);border-radius:16px;padding:40px 36px;width:90%;max-width:380px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.6)}
 </style>
 </head>
 <body>
 
+<!-- SPARK CANVAS (gold particles on scroll/touch) -->
+<canvas id="sparkCanvas"></canvas>
+
 <!-- LOADING -->
-
-<!-- Thaan Password Modal -->
-<div id="thaanModal">
-  <div class="thaan-box">
-    <div style="font-size:44px;margin-bottom:12px">🔒</div>
-    <h2 class="cinzel" style="font-size:18px;font-weight:700;color:#E8CC6A;letter-spacing:2px;margin-bottom:6px">Wholesale SECTION</h2>
-    <p style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:24px;font-family:'Cormorant Garamond',serif">This section is restricted. Please enter the access password.</p>
-    <input id="thaanPwdInput" type="password" placeholder="Enter password"
-      style="width:100%;box-sizing:border-box;padding:12px 16px;border-radius:8px;border:1px solid rgba(212,175,55,.3);background:rgba(255,255,255,.07);color:#fff;font-size:14px;margin-bottom:10px;outline:none;text-align:center;letter-spacing:2px"
-      onkeydown="if(event.key==='Enter')checkThaanPwd()"/>
-    <p id="thaanPwdError" style="color:#f87171;font-size:11px;margin-bottom:10px;min-height:16px"></p>
-    <button onclick="checkThaanPwd()" class="btn-gold" style="width:100%;padding:12px;border-radius:8px;font-size:13px;margin-bottom:10px">Unlock →</button>
-    <button onclick="closeThaanModal()" style="background:none;border:none;color:rgba(255,255,255,.35);font-size:12px;cursor:pointer;font-family:'Cinzel',serif">Cancel</button>
-  </div>
-</div>
-
 <div id="loadingScreen" style="position:fixed;inset:0;background:#FDFAF2;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:16px">
   <div class="spinner"></div>
   <p class="cinzel" style="font-size:13px;color:#3B0764;letter-spacing:3px">LIBAS COLLECTION</p>
-  <p style="font-size:12px;color:#9CA3AF">Loading...</p>
+  <p style="font-size:12px;color:#9CA3AF">Loading…</p>
 </div>
 
 <!-- APP -->
 <div id="app" style="display:none;min-height:100vh;flex-direction:column">
-  <header id="mainHeader" style="background:linear-gradient(180deg,#180626 0%,#3B0764 100%);box-shadow:0 4px 24px rgba(0,0,0,.45);position:sticky;top:0;z-index:300">
+
+  <!-- HEADER -->
+  <header style="background:linear-gradient(180deg,#180626 0%,#3B0764 100%);box-shadow:0 4px 24px rgba(0,0,0,.45);position:sticky;top:0;z-index:300">
     <div style="background:#C9A020;padding:5px 0;text-align:center">
       <span class="cinzel" style="font-size:10px;letter-spacing:4px;color:#180626">✦ EST 1993 SOLAPUR · THREADS OF TRUST ✦</span>
     </div>
     <div style="max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px">
-      <button onclick="showPage('home')" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start">
+      <a href="#top" style="text-decoration:none;display:flex;flex-direction:column;align-items:flex-start">
         <span class="cinzel" style="font-size:30px;font-weight:700;letter-spacing:2px;line-height:1"><span class="gold-text">Libas</span></span>
         <span class="cinzel" style="font-size:8px;letter-spacing:5px;color:#E8CC6A;opacity:.75">COLLECTION</span>
-      </button>
+      </a>
+      <!-- Desktop nav -->
       <nav class="desktop-nav" style="display:flex;gap:24px;align-items:center">
-        <button class="nav-link" onclick="showPage('home')">Home</button>
-        <div class="dropdown">
-          <button class="nav-link" style="display:flex;align-items:center;gap:4px">Shirting ▾</button>
-          <div class="dropdown-menu" id="shirtingMenu"></div>
-        </div>
-        <div class="dropdown">
-          <button class="nav-link" style="display:flex;align-items:center;gap:4px">Suiting ▾</button>
-          <div class="dropdown-menu" id="suitingMenu"></div>
-        </div>
-        <button class="nav-link" onclick="openThaan()">Wholesale 🔒</button>
-        <button class="nav-link" onclick="showProducts()">All Products</button>
+        <a href="#top" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#specialities" class="nav-link">Specialities</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#goals" class="nav-link">Future Goals</a>
       </nav>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button onclick="toggleSearch()" style="background:none;border:none;cursor:pointer;padding:8px;line-height:0">
-          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#E8CC6A" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        </button>
-        <button onclick="showPage('cart')" style="background:none;border:none;cursor:pointer;padding:8px;position:relative;line-height:0">
-          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#E8CC6A" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          <span id="cartBadge" class="badge" style="position:absolute;top:1px;right:1px;font-size:9px;min-width:14px;height:14px;display:none">0</span>
-        </button>
-        <button class="mobile-btn" onclick="toggleMobileMenu()" style="display:none;background:none;border:none;cursor:pointer;padding:8px;line-height:0">
-          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#E8CC6A" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
+      <!-- SVG morphing hamburger -->
+      <button class="ham-btn" id="hamBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+        <svg class="ham-svg" width="26" height="20" viewBox="0 0 26 20">
+          <path class="hline" id="hTop" d="M2,3 L24,3"/>
+          <path class="hline" id="hMid" d="M2,10 L24,10"/>
+          <path class="hline" id="hBot" d="M2,17 L18,17"/>
+        </svg>
+      </button>
     </div>
-    <div id="searchBar" style="display:none;background:#3B0764;padding:10px 20px;border-top:1px solid rgba(212,175,55,.2)">
-      <div style="max-width:600px;margin:0 auto;display:flex;gap:8px">
-        <input class="input-field" id="searchInput" placeholder="Search fabrics, brands, types..." style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(212,175,55,.4)" oninput="filterProducts()" onkeydown="if(event.key==='Enter')showProducts()"/>
-        <button class="btn-gold" style="padding:10px 20px;border-radius:6px" onclick="showProducts()">Search</button>
+
+    <!-- Mobile menu — slides via max-height -->
+    <div id="mobileMenu">
+      <div class="mnav-item">
+        <span class="mnav-num">01</span>
+        <a href="#top" class="mnav-link" onclick="closeMenu()">Home</a>
+        <span class="mnav-arrow">›</span>
       </div>
-    </div>
-    <div id="mobileMenu" style="display:none;background:#3B0764;border-top:1px solid rgba(212,175,55,.2);padding:16px 20px">
-      <button class="nav-link" onclick="showPage('home');toggleMobileMenu()" style="display:block;margin-bottom:14px;font-size:14px">Home</button>
-      <button class="nav-link" onclick="showProducts('Shirting');toggleMobileMenu()" style="display:block;margin-bottom:14px;font-size:14px">Shirting</button>
-      <button class="nav-link" onclick="showProducts('Suiting');toggleMobileMenu()" style="display:block;margin-bottom:14px;font-size:14px">Suiting</button>
-      <button class="nav-link" onclick="openThaan();toggleMobileMenu()" style="display:block;margin-bottom:14px;font-size:14px">Wholesale 🔒</button>
-      <button class="nav-link" onclick="showProducts();toggleMobileMenu()" style="display:block;margin-bottom:14px;font-size:14px">All Products</button>
-      <button class="nav-link" onclick="showPage('cart');toggleMobileMenu()" style="display:block;font-size:14px">Cart</button>
+      <div class="mnav-item">
+        <span class="mnav-num">02</span>
+        <a href="#about" class="mnav-link" onclick="closeMenu()">About Us</a>
+        <span class="mnav-arrow">›</span>
+      </div>
+      <div class="mnav-item">
+        <span class="mnav-num">03</span>
+        <a href="#specialities" class="mnav-link" onclick="closeMenu()">Specialities</a>
+        <span class="mnav-arrow">›</span>
+      </div>
+      <div class="mnav-item">
+        <span class="mnav-num">04</span>
+        <a href="#achievements" class="mnav-link" onclick="closeMenu()">Achievements</a>
+        <span class="mnav-arrow">›</span>
+      </div>
+      <div class="mnav-item" style="border-bottom:none">
+        <span class="mnav-num">05</span>
+        <a href="#goals" class="mnav-link" onclick="closeMenu()">Future Goals</a>
+        <span class="mnav-arrow">›</span>
+      </div>
     </div>
   </header>
 
-  <main id="mainContent" style="flex:1"></main>
+  <!-- MAIN -->
+  <main style="flex:1" id="top">
 
-  <footer style="background:#180626;border-top:2px solid rgba(212,175,55,.3);margin-top:60px">
+    <!-- HERO -->
+    <section style="background:linear-gradient(135deg,#180626 0%,#3B0764 55%,#4c1d95 100%);min-height:520px;display:flex;align-items:center;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;border:1px solid rgba(212,175,55,.1)"></div>
+      <div style="position:absolute;bottom:-80px;left:-50px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(212,175,55,.07)"></div>
+      <div style="position:absolute;right:6%;top:50%;transform:translateY(-50%);opacity:.04;font-size:300px;color:#D4AF37;font-family:serif;line-height:1;user-select:none">✤</div>
+      <div style="max-width:1200px;margin:0 auto;padding:70px 40px;position:relative;z-index:1">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;animation:revealLeft .6s cubic-bezier(.22,1,.36,1) .1s both">
+          <div style="height:1px;width:44px;background:linear-gradient(90deg,transparent,#D4AF37)"></div>
+          <span class="cinzel" style="font-size:10px;letter-spacing:5px;color:#E8CC6A">EST 1993 · SOLAPUR</span>
+        </div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,80px);color:#fff;font-weight:300;font-style:italic;line-height:1.1;margin-bottom:4px;animation:revealUp .6s cubic-bezier(.22,1,.36,1) .2s both">Threads of</h1>
+        <h1 style="font-family:'Cinzel',serif;font-size:clamp(36px,5vw,68px);font-weight:700;line-height:1.1;margin-bottom:24px;animation:revealUp .6s cubic-bezier(.22,1,.36,1) .3s both"><span class="gold-text">Trust &amp; Elegance</span></h1>
+        <p style="color:rgba(255,255,255,.75);max-width:480px;line-height:1.8;font-family:'Cormorant Garamond',serif;font-size:18px;animation:revealUp .6s cubic-bezier(.22,1,.36,1) .42s both">Solapur's finest destination for premium shirting &amp; suiting fabrics — sold per meter, crafted for distinction.</p>
+
+        <!-- HERO CONTACT ICONS -->
+        <div class="hero-contacts">
+
+          <!-- Instagram -->
+          <a class="hc-btn" href="https://www.instagram.com/libas_collection_ethnic?igsh=cDFrMDA5Ymw4NnJ2" target="_blank" rel="noopener" aria-label="Instagram">
+            <div class="hc-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r=".8" fill="#D4AF37" stroke="none"/>
+              </svg>
+            </div>
+            <div class="hc-text">
+              <span class="hc-label">Instagram</span>
+              <span class="hc-value">@libas_collection</span>
+            </div>
+          </a>
+
+          <!-- Call -->
+          <a class="hc-btn" href="tel:9270704810" aria-label="Call us">
+            <div class="hc-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.26h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div class="hc-text">
+              <span class="hc-label">Call Us</span>
+              <span class="hc-value">9270704810</span>
+            </div>
+          </a>
+
+          <!-- WhatsApp -->
+          <a class="hc-btn hc-wa-btn" href="https://wa.me/919270704810" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <div class="hc-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#D4AF37">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.303A9.954 9.954 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 0 1-4.031-1.098l-.29-.172-2.953.773.79-2.88-.189-.295A7.963 7.963 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
+              </svg>
+            </div>
+            <div class="hc-text">
+              <span class="hc-label">WhatsApp</span>
+              <span class="hc-value">9270704810</span>
+            </div>
+          </a>
+
+          <!-- Email -->
+          <a class="hc-btn" href="mailto:Libasecom@gmail.com" aria-label="Email">
+            <div class="hc-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="hc-text">
+              <span class="hc-label">Email</span>
+              <span class="hc-value">Libasecom@gmail.com</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div style="background:#3B0764;padding:14px 24px;border-top:1px solid rgba(212,175,55,.2);border-bottom:1px solid rgba(212,175,55,.2)">
+      <div style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:12px">
+        <div class="reveal d1" style="text-align:center"><span style="color:#C9A020">✦</span><p class="cinzel" style="font-size:11px;color:#fff;letter-spacing:1px;margin-top:2px">Premium Fabrics</p><p style="font-size:11px;color:rgba(232,204,106,.6);margin-top:1px">Finest quality per meter</p></div>
+        <div class="reveal d2" style="text-align:center"><span style="color:#C9A020">✦</span><p class="cinzel" style="font-size:11px;color:#fff;letter-spacing:1px;margin-top:2px">Since 1993</p><p style="font-size:11px;color:rgba(232,204,106,.6);margin-top:1px">Trusted for 30+ years</p></div>
+        <div class="reveal d3" style="text-align:center"><span style="color:#C9A020">✦</span><p class="cinzel" style="font-size:11px;color:#fff;letter-spacing:1px;margin-top:2px">All Brands</p><p style="font-size:11px;color:rgba(232,204,106,.6);margin-top:1px">40+ premium brands</p></div>
+        <div class="reveal d4" style="text-align:center"><span style="color:#C9A020">✦</span><p class="cinzel" style="font-size:11px;color:#fff;letter-spacing:1px;margin-top:2px">Solapur</p><p style="font-size:11px;color:rgba(232,204,106,.6);margin-top:1px">Heart of India's textile</p></div>
+      </div>
+    </div>
+
+    <!-- BANNER -->
+    <div class="banner-slider reveal-scale" id="bannerSlider">
+      <div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:linear-gradient(135deg,#180626,#3B0764)">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" style="background:#3B0764;padding:72px 24px" class="section-pad">
+      <div style="max-width:1200px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:44px" class="reveal">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.5))"></div>
+            <span class="cinzel" style="font-size:10px;letter-spacing:4px;color:#C9A020">OUR STORY</span>
+            <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.5),transparent)"></div>
+          </div>
+          <h2 class="cinzel" style="font-size:clamp(24px,4vw,38px);font-weight:700;color:#fff;letter-spacing:2px;margin-bottom:12px"><span class="gold-text">About Us</span></h2>
+          <p class="cormorant" style="color:rgba(232,204,106,.7);font-size:16px;max-width:560px;margin:0 auto;line-height:1.7">Weaving trust and elegance since 1993 — discover the story behind Libas Collection.</p>
+        </div>
+        <div id="aboutGrid" class="portfolio-grid">
+          <div class="skeleton-dark" style="height:300px;border-radius:14px"></div>
+          <div class="skeleton-dark" style="height:300px;border-radius:14px"></div>
+          <div class="skeleton-dark" style="height:300px;border-radius:14px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIALITIES -->
+    <section id="specialities" style="background:linear-gradient(180deg,#FDFAF2,#f5ead6);padding:72px 24px" class="section-pad">
+      <div style="max-width:1200px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:44px" class="reveal">
+          <div class="ornament-line" style="margin-bottom:14px"><span class="divider-text">✦ WHAT WE DO BEST ✦</span></div>
+          <h2 class="cinzel" style="font-size:clamp(24px,4vw,38px);font-weight:700;color:#3B0764;letter-spacing:2px;margin-bottom:12px">Our Specialities</h2>
+          <p class="cormorant" style="color:#6B21A8;font-size:16px;max-width:560px;margin:0 auto;line-height:1.7">The craft and expertise that sets Libas Collection apart in every fabric we offer.</p>
+        </div>
+        <div id="specialitiesGrid" class="portfolio-grid">
+          <div class="skeleton" style="height:300px;border-radius:14px"></div>
+          <div class="skeleton" style="height:300px;border-radius:14px"></div>
+          <div class="skeleton" style="height:300px;border-radius:14px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" style="background:linear-gradient(135deg,#180626 0%,#1a0835 50%,#0f0520 100%);padding:72px 24px" class="section-pad">
+      <div style="max-width:1200px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:44px" class="reveal">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.5))"></div>
+            <span class="cinzel" style="font-size:10px;letter-spacing:4px;color:#C9A020">MILESTONES &amp; PRIDE</span>
+            <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.5),transparent)"></div>
+          </div>
+          <h2 class="cinzel" style="font-size:clamp(24px,4vw,38px);font-weight:700;color:#fff;letter-spacing:2px;margin-bottom:12px"><span class="gold-text">Our Achievements</span></h2>
+          <p class="cormorant" style="color:rgba(232,204,106,.7);font-size:16px;max-width:560px;margin:0 auto;line-height:1.7">Three decades of excellence, recognition, and trust from thousands of satisfied customers.</p>
+        </div>
+        <div id="achievementsGrid" class="portfolio-grid">
+          <div class="skeleton-dark" style="height:300px;border-radius:14px"></div>
+          <div class="skeleton-dark" style="height:300px;border-radius:14px"></div>
+          <div class="skeleton-dark" style="height:300px;border-radius:14px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUTURE GOALS -->
+    <section id="goals" style="background:linear-gradient(135deg,#fdf6e3,#fef9ec,#FDFAF2);padding:72px 24px" class="section-pad">
+      <div style="max-width:1200px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:44px" class="reveal">
+          <div class="ornament-line" style="margin-bottom:14px"><span class="divider-text">✦ VISION AHEAD ✦</span></div>
+          <h2 class="cinzel" style="font-size:clamp(24px,4vw,38px);font-weight:700;color:#3B0764;letter-spacing:2px;margin-bottom:12px">Our Future Goals</h2>
+          <p class="cormorant" style="color:#6B21A8;font-size:16px;max-width:560px;margin:0 auto;line-height:1.7">Our vision for the future — expanding horizons while staying true to our roots of quality and trust.</p>
+        </div>
+        <div id="goalsGrid" class="portfolio-grid">
+          <div class="skeleton" style="height:300px;border-radius:14px"></div>
+          <div class="skeleton" style="height:300px;border-radius:14px"></div>
+          <div class="skeleton" style="height:300px;border-radius:14px"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="background:#180626;border-top:2px solid rgba(212,175,55,.3)" class="reveal">
     <div style="max-width:1200px;margin:0 auto;padding:48px 24px 28px">
       <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:32px">
         <div>
@@ -209,1036 +389,423 @@ body{font-family:'Lato',sans-serif;background:#FDFAF2;color:#2D1458;min-height:1
           <p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.85;font-family:'Cormorant Garamond',serif;max-width:320px">Since 1993, Libas Collection has been Solapur's trusted destination for premium shirting and suiting fabrics.</p>
         </div>
         <div>
-          <p class="cinzel" style="font-size:10px;letter-spacing:3px;color:#C9A020;margin-bottom:16px">EXPLORE</p>
-          <button class="nav-link" onclick="showPage('home')" style="display:block;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.5)">Home</button>
-          <button class="nav-link" onclick="showProducts('Shirting')" style="display:block;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.5)">Shirting</button>
-          <button class="nav-link" onclick="showProducts('Suiting')" style="display:block;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.5)">Suiting</button>
-          <button class="nav-link" onclick="showProducts()" style="display:block;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.5)">All Products</button>
+          <p class="cinzel" style="font-size:10px;letter-spacing:3px;color:#C9A020;margin-bottom:16px">NAVIGATE</p>
+          <a href="#top"          class="nav-link" style="display:block;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.5)">Home</a>
+          <a href="#about"        class="nav-link" style="display:block;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.5)">About Us</a>
+          <a href="#specialities" class="nav-link" style="display:block;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.5)">Specialities</a>
+          <a href="#achievements" class="nav-link" style="display:block;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.5)">Achievements</a>
+          <a href="#goals"        class="nav-link" style="display:block;font-size:12px;color:rgba(255,255,255,.5)">Future Goals</a>
         </div>
         <div>
           <p class="cinzel" style="font-size:10px;letter-spacing:3px;color:#C9A020;margin-bottom:16px">CONTACT</p>
           <p style="color:rgba(255,255,255,.45);font-size:13px;margin-bottom:8px">📍 Solapur, Maharashtra</p>
-          <p style="color:rgba(255,255,255,.45);font-size:13px;margin-bottom:8px">📞 9270704810</p>
-          <p style="color:rgba(255,255,255,.45);font-size:13px;margin-bottom:8px">📧 libasecom.gmail.com</p>
+          <p style="color:rgba(255,255,255,.45);font-size:13px;margin-bottom:8px">📞 <a href="tel:9270704810" style="color:rgba(255,255,255,.45);text-decoration:none">9270704810</a></p>
+          <p style="color:rgba(255,255,255,.45);font-size:13px">📧 <a href="mailto:Libasecom@gmail.com" style="color:rgba(255,255,255,.45);text-decoration:none">Libasecom@gmail.com</a></p>
         </div>
       </div>
       <div class="ornament-line"><span class="divider-text">✦ Threads of Trust ✦</span></div>
       <p style="text-align:center;color:rgba(255,255,255,.2);font-size:10px;font-family:'Cinzel',serif;letter-spacing:1px;margin-top:14px">© 2025 LIBAS COLLECTION · EST 1993 SOLAPUR</p>
     </div>
   </footer>
-</div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</div><!-- end #app -->
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ── CONFIG ──
+'use strict';
+
+/* ══════════════════════════════════════════
+   GOLD SPARK PARTICLE ENGINE
+══════════════════════════════════════════ */
+(function(){
+  const cvs = document.getElementById('sparkCanvas');
+  const ctx = cvs.getContext('2d');
+  let W, H, raf = null;
+  let particles = [];
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  function resize() { W = cvs.width = window.innerWidth; H = cvs.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+
+  const PALETTE = ['#FFD700','#E8CC6A','#C9A020','#FFF5B0','#F5C842','#FFFFFF'];
+
+  function spawn(x, y, n) {
+    for (let i = 0; i < n; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const spd   = 1.0 + Math.random() * 3.8;
+      const life  = 0.5 + Math.random() * 0.6;
+      particles.push({
+        x, y,
+        vx: Math.cos(angle) * spd,
+        vy: Math.sin(angle) * spd - 1.4,
+        size:  1.2 + Math.random() * 3.0,
+        color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+        life,  maxLife: life,
+        rot:   Math.random() * Math.PI * 2,
+        rotV:  (Math.random() - .5) * .3,
+        star:  Math.random() < .28,
+        g:     0.07 + Math.random() * 0.09
+      });
+    }
+    if (!raf) loop();
+  }
+
+  function star4(x, y, r, rot) {
+    ctx.beginPath();
+    for (let i = 0; i < 8; i++) {
+      const a = (i * Math.PI) / 4 + rot;
+      const d = i % 2 === 0 ? r : r * 0.35;
+      i === 0 ? ctx.moveTo(x + d*Math.cos(a), y + d*Math.sin(a))
+              : ctx.lineTo(x + d*Math.cos(a), y + d*Math.sin(a));
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    particles = particles.filter(p => p.life > 0);
+    for (const p of particles) {
+      p.x += p.vx; p.y += p.vy; p.vy += p.g;
+      p.rot += p.rotV; p.life -= 0.022;
+      const a = Math.max(0, p.life / p.maxLife);
+      ctx.save();
+      ctx.globalAlpha = a;
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 8; ctx.shadowColor = '#D4AF37';
+      if (p.star) star4(p.x, p.y, p.size * 1.35, p.rot);
+      else { ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill(); }
+      ctx.restore();
+    }
+    raf = particles.length ? requestAnimationFrame(loop) : null;
+  }
+
+  /* Touch — fire on move */
+  document.addEventListener('touchmove', e => {
+    const t = e.touches[0];
+    mouseX = t.clientX; mouseY = t.clientY;
+    spawn(mouseX, mouseY, 4);
+  }, {passive:true});
+
+  /* Mouse position tracking */
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+  }, {passive:true});
+
+  /* Scroll — spawn at current cursor/touch position */
+  let scrollTick = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollTick) {
+      scrollTick = true;
+      requestAnimationFrame(() => {
+        spawn(mouseX, mouseY, 3);
+        scrollTick = false;
+      });
+    }
+  }, {passive:true});
+})();
+
+
+/* ══════════════════════════════════════════
+   SVG HAMBURGER TOGGLE
+══════════════════════════════════════════ */
+let menuOpen = false;
+
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const btn  = document.getElementById('hamBtn');
+  const menu = document.getElementById('mobileMenu');
+  const top  = document.getElementById('hTop');
+  const mid  = document.getElementById('hMid');
+  const bot  = document.getElementById('hBot');
+  btn.setAttribute('aria-expanded', String(menuOpen));
+
+  if (menuOpen) {
+    /* morph to ✕ */
+    top.setAttribute('d', 'M4,4 L22,16');
+    mid.style.opacity = '0';
+    bot.setAttribute('d', 'M4,16 L22,4');
+    menu.classList.add('menu-open');
+  } else {
+    /* morph back to ≡ */
+    top.setAttribute('d', 'M2,3 L24,3');
+    mid.style.opacity = '1';
+    bot.setAttribute('d', 'M2,17 L18,17');
+    menu.classList.remove('menu-open');
+  }
+}
+
+function closeMenu() {
+  if (!menuOpen) return;
+  menuOpen = false;
+  const btn  = document.getElementById('hamBtn');
+  const menu = document.getElementById('mobileMenu');
+  const top  = document.getElementById('hTop');
+  const mid  = document.getElementById('hMid');
+  const bot  = document.getElementById('hBot');
+  btn.setAttribute('aria-expanded', 'false');
+  top.setAttribute('d', 'M2,3 L24,3');
+  mid.style.opacity = '1';
+  bot.setAttribute('d', 'M2,17 L18,17');
+  menu.classList.remove('menu-open');
+}
+
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL — IntersectionObserver
+══════════════════════════════════════════ */
+function initReveal() {
+  const els = document.querySelectorAll('.reveal,.reveal-left,.reveal-scale');
+  if (!els.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+  els.forEach(el => io.observe(el));
+}
+
+function observeCards() {
+  const cards = document.querySelectorAll('.pcard-split:not(.visible)');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.animationDelay = (i * 0.09) + 's';
+        e.target.classList.add('reveal', 'visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+  cards.forEach(el => { el.style.opacity = '0'; io.observe(el); });
+}
+
+
+/* ══════════════════════════════════════════
+   SUPABASE
+══════════════════════════════════════════ */
 const SUPABASE_URL  = 'https://hkdenuzxxrcvcgtbqgxq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhrZGVudXp4eHJjdmNndGJxZ3hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NTM5MjIsImV4cCI6MjA4NzMyOTkyMn0.2GgEChu1H-1vyKorxjDm_p4VHP7YOuSpFMo_wF8f6vY';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-// ── STATE ──
-let allProducts = [];
-let bannerImages = [];
-let cart = JSON.parse(localStorage.getItem('libas_cart') || '[]');
-let currentCat = '', currentSub = '', currentBrand = '';
-let currentProduct = null;
+let bannerImages = [], portfolioItems = [];
 let bannerIdx = 0, bannerTimer = null;
-let prodImgIdx = 0;
+let bannerCh = null, portfolioCh = null;
+const slideIdx = {};
 
-// Navigation history stack for back button
-let _navStack = [];
-
-function _pushNav(state) {
-  _navStack.push(state);
-}
-
-function goBack() {
-  if (_navStack.length > 1) {
-    _navStack.pop(); // remove current
-    const prev = _navStack[_navStack.length - 1];
-    _applyNav(prev, false);
-  } else {
-    _applyNav({page:'home'}, false);
-    _navStack = [{page:'home'}];
-  }
-}
-
-function _removeBackBtn() {
-  const el = document.getElementById('_stickyBack');
-  if (el) el.remove();
-}
-function _addBackBtn(label) {
-  _removeBackBtn();
-  const btn = document.createElement('button');
-  btn.id = '_stickyBack';
-  btn.className = 'back-btn-sticky';
-  btn.innerHTML = '&#8592; ' + label;
-  btn.onclick = goBack;
-  document.body.appendChild(btn);
-}
-
-function _applyNav(state, push) {
-  window.scrollTo(0,0);
-  clearBannerTimer();
-  const main = document.getElementById('mainContent');
-  if (push) _pushNav(state);
-
-  // Sticky back button
-  const canGoBack = _navStack.length > 1 || (push && state.page !== 'home');
-  if (state.page === 'home') {
-    _removeBackBtn();
-  } else {
-    const labels = {products:'Back', product:'Back', cart:'Back', shipping:'Back to Cart'};
-    _addBackBtn(labels[state.page] || 'Back');
-  }
-
-  if (state.page==='home') { main.innerHTML = homeHTML(); initBanner(); }
-  else if (state.page==='products') {
-    currentCat = state.cat||''; currentSub = state.sub||''; currentBrand = state.brand||'';
-    main.innerHTML = productsPageHTML(); renderProductGrid();
-    document.getElementById('searchBar').style.display = 'none';
-  }
-  else if (state.page==='product' && state.product) {
-    currentProduct = state.product;
-    main.innerHTML = productDetailHTML(currentProduct); initProdSlider();
-  }
-  else if (state.page==='cart') main.innerHTML = cartHTML();
-  else if (state.page==='shipping') main.innerHTML = shippingHTML();
-}
-
-const SUBCATS = {
-  Shirting: ['Linen','Cotton Linen','Khadi','Cotton','Polister Cotton'],
-  Suiting:  ['Linen','Cotton Linen','Khadi','Cotton','Polister Cotton'],
-  Thaan:    ['Linen','Cotton Linen','Khadi','Cotton','Polister Cotton'],
-};
-const FABRIC_BGS = [
-  'linear-gradient(135deg,#2d0a52,#4c1d95)',
-  'linear-gradient(135deg,#1e3a5f,#1d4ed8)',
-  'linear-gradient(135deg,#1a2e1a,#166534)',
-  'linear-gradient(135deg,#3d0c11,#991b1b)',
-  'linear-gradient(135deg,#1c1917,#44403c)',
-  'linear-gradient(135deg,#1a1a2e,#0f3460)',
-  'linear-gradient(135deg,#1c0a2e,#3b0764)',
-  'linear-gradient(135deg,#2d1b00,#78350f)',
-];
-const COLOR_HEX = {White:'#F9FAFB',Cream:'#FEF9C3','Sky Blue':'#BAE6FD',Navy:'#1E3A5F',Beige:'#F5DEB3',Black:'#1F2937',Charcoal:'#374151',Brown:'#92400E',Grey:'#6B7280',Ivory:'#FFFFF0',Natural:'#D4C5A9','Off White':'#FAF5E4',Multi:'#a855f7',Blue:'#3B82F6',Red:'#EF4444',Rust:'#B45309',Indigo:'#4338CA',Mint:'#6EE7B7',Green:'#16A34A',Maroon:'#881337'};
-const fabBg = id => FABRIC_BGS[String(id||'').charCodeAt(String(id||'').length-1) % FABRIC_BGS.length] || FABRIC_BGS[0];
-const parseArr = v => Array.isArray(v) ? v : (v ? (typeof v==='string'?JSON.parse(v):[]) : []);
-
-// ── INIT ──
 async function init() {
-  try { await Promise.all([loadProducts(), loadBanners()]); } catch(e) { console.error(e); }
-  buildDropdowns();
-  _navStack = [{page:'home'}];
-  _applyNav({page:'home'}, false);
-  updateCartBadge();
+  const [b, p] = await Promise.allSettled([loadBanners(), loadPortfolio()]);
+  if (b.status === 'rejected') console.warn('Banners:', b.reason);
+  if (p.status === 'rejected') console.warn('Portfolio:', p.reason);
+  showApp();
+  renderBanner();
+  renderAll();
+  initReveal();
+  setTimeout(() => { subBanners(); subPortfolio(); }, 400);
+}
+
+function showApp() {
   document.getElementById('loadingScreen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
-  subscribeProducts();
-  subscribeBanners();
-}
-
-async function loadProducts() {
-  const { data, error } = await sb.from('products').select('*').order('created_at',{ascending:false});
-  if (!error) { allProducts = data || []; console.log('✅ Products:',allProducts.length); }
 }
 
 async function loadBanners() {
-  const { data, error } = await sb.from('banner_images').select('*').eq('is_active',true).order('sort_order',{ascending:true});
-  if (!error) bannerImages = data || [];
+  const { data, error } = await sb.from('banner_images').select('*').eq('is_active', true).order('sort_order', { ascending: true });
+  if (error) throw error;
+  bannerImages = data || [];
 }
 
-// ── REALTIME ──
-function subscribeProducts() {
-  sb.channel('prod-ch').on('postgres_changes',{event:'*',schema:'public',table:'products'}, async () => {
-    await loadProducts();
-    if (document.getElementById('productGrid')) renderProductGrid();
-    refreshHomeArrivals();
-  }).subscribe();
-}
-function subscribeBanners() {
-  sb.channel('ban-ch').on('postgres_changes',{event:'*',schema:'public',table:'banner_images'}, async () => {
-    await loadBanners();
-    if (document.getElementById('bannerSlider')) renderBannerSlider();
-  }).subscribe();
+async function loadPortfolio() {
+  /* select('*') avoids 400 when image_urls column not yet created */
+  const { data, error } = await sb.from('portfolio_items').select('*').order('created_at', { ascending: true });
+  if (error) throw error;
+  portfolioItems = data || [];
 }
 
-function buildDropdowns() {
-  const sm = document.getElementById('shirtingMenu');
-  const su = document.getElementById('suitingMenu');
-  if (sm) sm.innerHTML = SUBCATS.Shirting.map(s=>`<button class="dropdown-item" onclick="showProducts('Shirting','${s}')">${s}</button>`).join('');
-  if (su) su.innerHTML = SUBCATS.Suiting.map(s=>`<button class="dropdown-item" onclick="showProducts('Suiting','${s}')">${s}</button>`).join('');
+function subBanners() {
+  if (bannerCh) { sb.removeChannel(bannerCh); bannerCh = null; }
+  bannerCh = sb.channel('lb-banners');
+  bannerCh.on('postgres_changes', { event: '*', schema: 'public', table: 'banner_images' }, async () => {
+    await loadBanners().catch(console.warn); renderBanner();
+  }).subscribe((s, e) => { if (e) console.warn('Banner ch:', e); });
 }
 
-// ── PAGES ──
-function showPage(name) {
-  _applyNav({page:name}, true);
+function subPortfolio() {
+  if (portfolioCh) { sb.removeChannel(portfolioCh); portfolioCh = null; }
+  portfolioCh = sb.channel('lb-portfolio');
+  portfolioCh.on('postgres_changes', { event: '*', schema: 'public', table: 'portfolio_items' }, async () => {
+    await loadPortfolio().catch(console.warn); renderAll();
+  }).subscribe((s, e) => { if (e) console.warn('Portfolio ch:', e); });
 }
 
-function showProducts(cat='', sub='') {
-  _applyNav({page:'products', cat, sub, brand:''}, true);
-}
 
-// ── DEBOUNCED SEARCH ──
-let _searchTimer = null;
-function filterProducts() {
-  clearTimeout(_searchTimer);
-  _searchTimer = setTimeout(renderProductGrid, 120);
-}
+/* ── BANNER SLIDER ── */
+function renderBanner() {
+  const el = document.getElementById('bannerSlider');
+  if (!el) return;
+  bannerIdx = 0; clearBannerTimer();
+  const slides = bannerImages.length ? bannerImages
+    : [{ id: 'd', image_url: '', title: 'Welcome to Libas Collection', subtitle: 'Premium Fabrics Since 1993' }];
 
-// ── BANNER SLIDER ──
-function renderBannerSlider() {
-  const slider = document.getElementById('bannerSlider');
-  if (!slider) return;
-  bannerIdx = 0;
-  const slides = bannerImages.length > 0 ? bannerImages : [{id:'d', image_url:'', title:'Welcome to Libas Collection', subtitle:'Premium Fabrics Since 1993'}];
-
-  // Build slides HTML using position:absolute opacity approach
-  let slidesHTML = '';
-  for (let i = 0; i < slides.length; i++) {
-    const img = slides[i];
+  let h = slides.map((s, i) => {
     let inner = '';
-    if (img.image_url) {
-      inner = '<img src="' + img.image_url + '" alt="' + (img.title||'') + '" loading="' + (i===0?'eager':'lazy') + '" style="width:100%;height:100%;object-fit:cover;display:block">';
-      if (img.title) {
-        inner += '<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.65));padding:32px 40px 24px;pointer-events:none">'
-               + '<h2 style="font-family:Cormorant Garamond,serif;color:#fff;font-size:clamp(20px,3.5vw,36px);font-weight:600;margin-bottom:4px">' + img.title + '</h2>'
-               + (img.subtitle ? '<p style="color:rgba(232,204,106,.9);font-size:clamp(12px,2vw,16px)">' + img.subtitle + '</p>' : '')
-               + '</div>';
-      }
+    if (s.image_url) {
+      inner = `<img src="${eh(s.image_url)}" alt="${eh(s.title||'')}" loading="${i===0?'eager':'lazy'}" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">`;
+      if (s.title) inner += `<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.65));padding:32px 40px 24px;pointer-events:none"><h2 style="font-family:'Cormorant Garamond',serif;color:#fff;font-size:clamp(20px,3.5vw,36px);font-weight:600;margin-bottom:4px">${eh(s.title)}</h2>${s.subtitle ? `<p style="color:rgba(232,204,106,.9);font-size:clamp(12px,2vw,16px)">${eh(s.subtitle)}</p>` : ''}</div>`;
     } else {
-      inner = '<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#180626,#3B0764,#4c1d95)">'
-            + '<span style="font-size:clamp(50px,8vw,90px)">🧵</span>'
-            + '<span style="font-family:Cinzel,serif;color:#E8CC6A;font-size:clamp(13px,2.5vw,20px);letter-spacing:4px">' + (img.title||'LIBAS COLLECTION') + '</span>'
-            + (img.subtitle ? '<span style="color:rgba(232,204,106,.6);font-size:clamp(11px,1.5vw,14px)">' + img.subtitle + '</span>' : '')
-            + '</div>';
+      inner = `<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#180626,#3B0764,#4c1d95)"><span style="font-size:clamp(50px,8vw,90px)">🧵</span><span style="font-family:'Cinzel',serif;color:#E8CC6A;font-size:clamp(13px,2.5vw,20px);letter-spacing:4px">${eh(s.title||'LIBAS COLLECTION')}</span>${s.subtitle ? `<span style="color:rgba(232,204,106,.6);font-size:clamp(11px,1.5vw,14px)">${eh(s.subtitle)}</span>` : ''}</div>`;
     }
-    slidesHTML += '<div class="banner-slide' + (i===0?' active':'') + '" style="position:absolute;inset:0">' + inner + '</div>';
-  }
+    return `<div class="banner-slide${i===0?' active':''}" style="position:absolute;inset:0">${inner}</div>`;
+  }).join('');
 
-  // Dots
-  let dotsHTML = '';
   if (slides.length > 1) {
-    dotsHTML = '<div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5" id="bannerDots">'
-             + slides.map((_,i) => '<button class="banner-dot' + (i===0?' active':'') + '" onclick="goBanner(' + i + ')"></button>').join('')
-             + '</div>';
+    h += `<button class="banner-arrow" onclick="moveBanner(-1)" style="left:14px">&#8249;</button>`
+       + `<button class="banner-arrow" onclick="moveBanner(1)"  style="right:14px">&#8250;</button>`
+       + `<div id="bannerDots" style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5">`
+       + slides.map((_, i) => `<button class="banner-dot${i===0?' active':''}" onclick="goBanner(${i})"></button>`).join('')
+       + `</div>`;
   }
+  el.innerHTML = h;
 
-  // Arrows
-  let arrowsHTML = '';
-  if (slides.length > 1) {
-    arrowsHTML = '<button class="banner-arrow" onclick="moveBanner(-1)" style="left:14px">&#8249;</button>'
-               + '<button class="banner-arrow" onclick="moveBanner(1)" style="right:14px">&#8250;</button>';
-  }
+  let tx = 0;
+  el.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend',   e => {
+    const d = e.changedTouches[0].clientX - tx;
+    if (Math.abs(d) > 50) moveBanner(d > 0 ? -1 : 1);
+  }, { passive: true });
 
-  slider.innerHTML = slidesHTML + arrowsHTML + dotsHTML;
-
-  if (slides.length > 1) startBannerTimer(slides.length);
-}
-// ── THAAN PASSWORD ──
-const THAAN_PASSWORD = 'libas2024'; // ← change this password anytime
-function openThaan() {
-  if (sessionStorage.getItem('thaan_unlocked') === 'yes') {
-    showProducts('Thaan'); return;
-  }
-  document.getElementById('thaanPwdInput').value = '';
-  document.getElementById('thaanPwdError').textContent = '';
-  document.getElementById('thaanModal').classList.add('open');
-  setTimeout(() => document.getElementById('thaanPwdInput').focus(), 100);
-}
-function closeThaanModal() {
-  document.getElementById('thaanModal').classList.remove('open');
-}
-function checkThaanPwd() {
-  const val = document.getElementById('thaanPwdInput').value.trim();
-  if (val === THAAN_PASSWORD) {
-    sessionStorage.setItem('thaan_unlocked', 'yes');
-    closeThaanModal();
-    showProducts('Thaan');
-  } else {
-    document.getElementById('thaanPwdError').textContent = 'Incorrect password. Try again.';
-    document.getElementById('thaanPwdInput').value = '';
-    document.getElementById('thaanPwdInput').focus();
-  }
+  if (slides.length > 1) startBT(slides.length);
 }
 
-function initBanner() {
-  if (!document.getElementById('bannerSlider')) return;
-  renderBannerSlider();
-  let _bTouchX = 0;
-  const slider = document.getElementById('bannerSlider');
-  if (slider) {
-    slider.addEventListener('touchstart', e => { _bTouchX = e.touches[0].clientX; }, {passive:true});
-    slider.addEventListener('touchend', e => {
-      const dx = e.changedTouches[0].clientX - _bTouchX;
-      if (Math.abs(dx) > 50) moveBanner(dx > 0 ? -1 : 1);
-    }, {passive:true});
-  }
-}
 function moveBanner(d) {
-  const slider = document.getElementById('bannerSlider');
-  const n = slider ? slider.querySelectorAll('.banner-slide').length : 1;
+  const el = document.getElementById('bannerSlider');
+  const n  = el ? el.querySelectorAll('.banner-slide').length : 1;
   bannerIdx = (bannerIdx + d + n) % n;
-  updateBannerPos();
-  resetBannerTimer(n);
+  updateBP(); resetBT(n);
 }
 function goBanner(i) {
-  const slider = document.getElementById('bannerSlider');
-  const n = slider ? slider.querySelectorAll('.banner-slide').length : 1;
-  bannerIdx = i;
-  updateBannerPos();
-  resetBannerTimer(n);
+  const el = document.getElementById('bannerSlider');
+  const n  = el ? el.querySelectorAll('.banner-slide').length : 1;
+  bannerIdx = i; updateBP(); resetBT(n);
 }
-function updateBannerPos() {
-  const slider = document.getElementById('bannerSlider');
-  if (!slider) return;
-  const slides = slider.querySelectorAll('.banner-slide');
-  slides.forEach((s, i) => {
-    s.classList.toggle('active', i === bannerIdx);
-  });
-  document.querySelectorAll('.banner-dot').forEach((d,i) => d.classList.toggle('active', i === bannerIdx));
+function updateBP() {
+  const el = document.getElementById('bannerSlider');
+  if (!el) return;
+  el.querySelectorAll('.banner-slide').forEach((s, i) => s.classList.toggle('active', i === bannerIdx));
+  document.querySelectorAll('.banner-dot').forEach((d, i) => d.classList.toggle('active', i === bannerIdx));
 }
-function startBannerTimer(n) {
-  bannerTimer = setInterval(() => {
-    const slider = document.getElementById('bannerSlider');
-    const count = slider ? slider.querySelectorAll('.banner-slide').length : n;
-    bannerIdx = (bannerIdx + 1) % count;
-    updateBannerPos();
-  }, 4000);
-}
-function clearBannerTimer() { if(bannerTimer){clearInterval(bannerTimer);bannerTimer=null;} }
-function resetBannerTimer(n) { clearBannerTimer(); startBannerTimer(n); }
+function startBT(n) { bannerTimer = setInterval(() => { bannerIdx = (bannerIdx + 1) % n; updateBP(); }, 4500); }
+function clearBannerTimer() { if (bannerTimer) { clearInterval(bannerTimer); bannerTimer = null; } }
+function resetBT(n) { clearBannerTimer(); startBT(n); }
 
-// ── HOME ──
-function homeHTML() {
-  const isNewProds = allProducts.filter(p=>p.is_new);
-  const latest = allProducts.filter(p=>!p.is_new).slice(0, Math.max(0, 8-isNewProds.length));
-  const arrivals = [...isNewProds, ...latest].slice(0,8);
-  return `
-  <section style="background:linear-gradient(135deg,#180626 0%,#3B0764 55%,#4c1d95 100%);min-height:500px;display:flex;align-items:center;position:relative;overflow:hidden">
-    <div style="position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;border:1px solid rgba(212,175,55,.1)"></div>
-    <div style="position:absolute;bottom:-80px;left:-50px;width:300px;height:300px;border-radius:50%;border:1px solid rgba(212,175,55,.07)"></div>
-    <div style="position:absolute;right:6%;top:50%;transform:translateY(-50%);opacity:.04;font-size:300px;color:#D4AF37;font-family:serif;line-height:1;user-select:none">✤</div>
-    <div style="max-width:1200px;margin:0 auto;padding:70px 40px;position:relative;z-index:1" class="fade-up">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
-        <div style="height:1px;width:44px;background:linear-gradient(90deg,transparent,#D4AF37)"></div>
-        <span class="cinzel" style="font-size:10px;letter-spacing:5px;color:#E8CC6A">EST 1993 · SOLAPUR</span>
-      </div>
-      <h1 class="cormorant" style="font-size:clamp(44px,6vw,80px);color:#fff;font-weight:300;line-height:1.1;margin-bottom:4px">Threads of</h1>
-      <h1 class="cinzel" style="font-size:clamp(36px,5vw,68px);font-weight:700;line-height:1.1;margin-bottom:28px"><span class="gold-text">Trust & Elegance</span></h1>
-      <p style="color:rgba(255,255,255,.75);font-size:17px;max-width:480px;line-height:1.8;font-family:'Cormorant Garamond',serif;margin-bottom:36px">Solapur's finest destination for premium shirting &amp; suiting fabrics — sold per meter, crafted for distinction.</p>
-      <div class="hero-actions" style="display:flex;gap:16px;flex-wrap:wrap">
-        <button class="btn-gold" style="padding:14px 38px;border-radius:4px;font-size:13px" onclick="showProducts()">Explore Collection</button>
-        <button class="btn-outline" style="padding:14px 30px;border-radius:4px;font-size:13px" onclick="showProducts('Shirting')">Shop Shirting</button>
-      </div>
-    </div>
-  </section>
 
-  <div style="background:#3B0764;padding:14px 24px;border-top:1px solid rgba(212,175,55,.2);border-bottom:1px solid rgba(212,175,55,.2)">
-    <div style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      ${[['✦','Premium Fabrics','Finest quality per meter'],['✦','Since 1993','Trusted for 30+ years'],['✦','All Brands','40+ premium brands'],['✦','Solapur',"Heart of India's textile"]].map(([ic,t,s])=>`
-      <div style="text-align:center"><span style="color:#C9A020;font-size:14px">${ic}</span>
-        <p class="cinzel" style="font-size:11px;color:#fff;letter-spacing:1px;margin-top:2px">${t}</p>
-        <p style="font-size:11px;color:rgba(232,204,106,.6);margin-top:1px">${s}</p></div>`).join('')}
-    </div>
-  </div>
+/* ── PORTFOLIO SECTIONS ── */
+const SMAP = { about:'aboutGrid', specialities:'specialitiesGrid', achievements:'achievementsGrid', goals:'goalsGrid' };
+const DARK = new Set(['about','achievements']);
 
-  <section style="max-width:1200px;margin:48px auto 0;padding:0 24px">
-    <div style="text-align:center;margin-bottom:22px">
-      <h2 class="cinzel" style="font-size:22px;font-weight:700;color:#3B0764;letter-spacing:2px;margin-bottom:8px">Featured Collection</h2>
-      <div class="ornament-line"><span class="divider-text">✦ Curated for You ✦</span></div>
-    </div>
-    <div class="banner-slider" id="bannerSlider" style="border-radius:14px;overflow:hidden;border:1px solid rgba(212,175,55,.25);box-shadow:0 8px 40px rgba(59,7,100,.15)">
-      <div style="display:flex;align-items:center;justify-content:center;height:420px;background:linear-gradient(135deg,#180626,#3B0764)"><div class="spinner"></div></div>
-    </div>
-  </section>
+function renderAll() { Object.keys(SMAP).forEach(renderSection); }
 
-  <section style="max-width:1200px;margin:0 auto;padding:48px 24px">
-    <div style="text-align:center;margin-bottom:36px">
-      <h2 class="cinzel" style="font-size:26px;font-weight:700;color:#3B0764;letter-spacing:2px;margin-bottom:8px">Shop by Category</h2>
-      <div class="ornament-line"><span class="divider-text">✦ Curated Collections ✦</span></div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
-      <div class="card-hover" onclick="showProducts('Shirting')" style="background:linear-gradient(135deg,#1a1060,#3B0764);border-radius:12px;padding:40px 32px;cursor:pointer;border:1px solid rgba(212,175,55,.25);position:relative;overflow:hidden">
-        <div style="position:absolute;top:-20px;right:-20px;font-size:110px;opacity:.07">👔</div>
-        <div style="font-size:50px;margin-bottom:14px">👔</div>
-        <h3 class="cinzel" style="font-size:24px;color:#fff;font-weight:700;margin-bottom:6px">Shirting</h3>
-        <p style="color:rgba(232,204,106,.7);font-size:13px;margin-bottom:20px">Linen · Khadi · Cotton · Digital Print</p>
-        <span class="cinzel" style="font-size:11px;color:#E8CC6A;letter-spacing:2px;border-bottom:1px solid rgba(212,175,55,.4);padding-bottom:2px">BROWSE →</span>
-      </div>
-      <div class="card-hover" onclick="showProducts('Suiting')" style="background:linear-gradient(135deg,#0a2a1a,#065F46);border-radius:12px;padding:40px 32px;cursor:pointer;border:1px solid rgba(212,175,55,.25);position:relative;overflow:hidden">
-        <div style="position:absolute;top:-20px;right:-20px;font-size:110px;opacity:.07">🎩</div>
-        <div style="font-size:50px;margin-bottom:14px">🎩</div>
-        <h3 class="cinzel" style="font-size:24px;color:#fff;font-weight:700;margin-bottom:6px">Suiting</h3>
-        <p style="color:rgba(232,204,106,.7);font-size:13px;margin-bottom:20px">Armani · Formal · Italian · Stretchable</p>
-        <span class="cinzel" style="font-size:11px;color:#E8CC6A;letter-spacing:2px;border-bottom:1px solid rgba(212,175,55,.4);padding-bottom:2px">BROWSE →</span>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:linear-gradient(180deg,#FDFAF2,#f5ead6);padding:20px 0 60px">
-    <div style="max-width:1200px;margin:0 auto;padding:0 24px">
-      <div style="text-align:center;margin-bottom:36px">
-        <h2 class="cinzel" style="font-size:26px;font-weight:700;color:#3B0764;letter-spacing:2px;margin-bottom:8px">Latest Products</h2>
-        <div class="ornament-line"><span class="divider-text">✦ Fresh from our collection ✦</span></div>
-      </div>
-      <div id="newArrivalsGrid" class="product-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px">
-        ${arrivals.length===0
-          ? '<p style="grid-column:1/-1;text-align:center;color:#9CA3AF;padding:40px 0;font-family:\'Cinzel\',serif;font-size:13px">No products yet. Add from Admin Panel.</p>'
-          : arrivals.map(p=>productCardHTML(p)).join('')}
-      </div>
-      <div style="text-align:center;margin-top:32px">
-        <button class="btn-purple" onclick="showProducts()" style="padding:13px 36px;border-radius:6px;font-size:13px">View All Products →</button>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:#3B0764;padding:56px 24px">
-    <div style="max-width:800px;margin:0 auto;text-align:center">
-      <div class="ornament-line"><span class="divider-text">✦ Our Story ✦</span></div>
-      <h2 class="cormorant" style="font-size:36px;color:#fff;font-weight:400;margin:16px 0 12px;line-height:1.3">Weaving Trust Since <span class="gold-text">1993</span></h2>
-      <p style="color:rgba(255,255,255,.7);font-size:16px;line-height:1.9;font-family:'Cormorant Garamond',serif">At Libas Collection, Solapur, excellence has been our hallmark for over three decades. We deliver premium quality shirting and suiting fabric — per meter, every time.</p>
-    </div>
-  </section>`;
-}
-
-function refreshHomeArrivals() {
-  const grid = document.getElementById('newArrivalsGrid');
+function renderSection(cat) {
+  const grid = document.getElementById(SMAP[cat]);
   if (!grid) return;
-  const isNew = allProducts.filter(p=>p.is_new);
-  const latest = allProducts.filter(p=>!p.is_new).slice(0, Math.max(0,8-isNew.length));
-  const arrivals = [...isNew,...latest].slice(0,8);
-  grid.innerHTML = arrivals.length===0
-    ? '<p style="grid-column:1/-1;text-align:center;color:#9CA3AF;padding:40px 0;font-family:\'Cinzel\',serif;font-size:13px">No products yet.</p>'
-    : arrivals.map(p=>productCardHTML(p)).join('');
-}
-
-// ── PRODUCTS PAGE ──
-function productsPageHTML() {
-  const brands = [...new Set(allProducts.map(p=>p.brand).filter(Boolean))];
-  const subs = currentCat ? (SUBCATS[currentCat]||[]) : [...SUBCATS.Shirting,...SUBCATS.Suiting];
-  return `
-  <div style="max-width:1200px;margin:0 auto;padding:28px 20px;min-height:80vh">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;font-size:12px;color:#9CA3AF">
-      <button onclick="showPage('home')" class="cinzel" style="background:none;border:none;cursor:pointer;color:#5B21B6;font-size:12px">Home</button>
-      <span>›</span><span class="cinzel">Shop</span>
-      ${currentCat?`<span>›</span><span class="cinzel" style="color:#3B0764">${currentCat}</span>`:''}
-      ${currentSub?`<span>›</span><span class="cinzel" style="color:#3B0764">${currentSub}</span>`:''}
-    </div>
-    <div style="display:flex;gap:24px;align-items:flex-start">
-      <aside class="sidebar-panel" style="width:210px;flex-shrink:0;background:#fff;border-radius:10px;border:1px solid rgba(212,175,55,.2);padding:20px;position:sticky;top:86px">
-        <p class="cinzel" style="font-size:13px;font-weight:700;color:#3B0764;margin-bottom:20px;letter-spacing:1px">FILTERS</p>
-        <div style="margin-bottom:24px">
-          <p class="cinzel" style="font-size:10px;letter-spacing:2.5px;color:#C9A020;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(212,175,55,.25)">CATEGORY</p>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <button class="filter-chip ${!currentCat?'active':''}" onclick="setCatFilter('')">All</button>
-            <button class="filter-chip ${currentCat==='Shirting'?'active':''}" onclick="setCatFilter('Shirting')">Shirting</button>
-            <button class="filter-chip ${currentCat==='Suiting'?'active':''}" onclick="setCatFilter('Suiting')">Suiting</button>
-            <button class="filter-chip ${currentCat==='Thaan'?'active':''}" onclick="openThaan()">Thaan 🔒</button>
-          </div>
-        </div>
-        <div style="margin-bottom:24px">
-          <p class="cinzel" style="font-size:10px;letter-spacing:2.5px;color:#C9A020;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(212,175,55,.25)">TYPE</p>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <button class="filter-chip ${!currentSub?'active':''}" onclick="setSubFilter('')">All Types</button>
-            ${subs.map(s=>`<button class="filter-chip ${currentSub===s?'active':''}" onclick="setSubFilter('${s}')">${s}</button>`).join('')}
-          </div>
-        </div>
-        <div style="margin-bottom:24px">
-          <p class="cinzel" style="font-size:10px;letter-spacing:2.5px;color:#C9A020;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(212,175,55,.25)">BRAND</p>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <button class="filter-chip ${!currentBrand?'active':''}" onclick="setBrandFilter('')">All Brands</button>
-            ${brands.map(b=>`<button class="filter-chip ${currentBrand===b?'active':''}" onclick="setBrandFilter('${b}')">${b}</button>`).join('')}
-          </div>
-        </div>
-        ${(currentCat||currentSub||currentBrand)?`<button onclick="clearFilters()" class="btn-outline" style="width:100%;padding:8px;border-radius:20px;font-size:11px">✕ Clear Filters</button>`:''}
-      </aside>
-      <div style="flex:1">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px">
-          <h2 class="cinzel" style="font-size:20px;color:#3B0764;font-weight:700" id="productCount">${currentCat||'All Fabrics'}</h2>
-          <input class="input-field" id="searchInput" placeholder="Search..." style="max-width:240px" oninput="filterProducts()"/>
-        </div>
-        <div id="productGrid" class="product-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px"></div>
-      </div>
-    </div>
-  </div>`;
-}
-
-function renderProductGrid() {
-  const grid = document.getElementById('productGrid');
-  const countEl = document.getElementById('productCount');
-  if (!grid) return;
-  const search = (document.getElementById('searchInput')||{}).value||'';
-  const list = allProducts.filter(p=>{
-    if (p.category==='Thaan' && currentCat!=='Thaan') return false;
-    if (currentCat && p.category!==currentCat) return false;
-    if (currentSub && p.subcategory!==currentSub) return false;
-    if (currentBrand && p.brand!==currentBrand) return false;
-    if (search) { const q=search.toLowerCase(); return p.name.toLowerCase().includes(q)||(p.brand||'').toLowerCase().includes(q)||(p.subcategory||'').toLowerCase().includes(q); }
-    return true;
-  });
-  if (countEl) countEl.textContent=`${currentCat||'All Fabrics'} (${list.length})`;
-  grid.innerHTML = list.length===0
-    ? `<div style="grid-column:1/-1;text-align:center;padding:80px 20px;color:#9CA3AF"><div style="font-size:52px;margin-bottom:16px">🔍</div><p class="cinzel" style="font-size:16px">No products found</p></div>`
-    : list.map(p=>productCardHTML(p)).join('');
-}
-
-function setCatFilter(c) { currentCat=c; currentSub=''; _navStack[_navStack.length-1]={page:'products',cat:c,sub:'',brand:currentBrand}; document.getElementById('mainContent').innerHTML=productsPageHTML(); renderProductGrid(); }
-function setSubFilter(s) { currentSub=s; _navStack[_navStack.length-1]={page:'products',cat:currentCat,sub:s,brand:currentBrand}; document.getElementById('mainContent').innerHTML=productsPageHTML(); renderProductGrid(); }
-function setBrandFilter(b) { currentBrand=b; _navStack[_navStack.length-1]={page:'products',cat:currentCat,sub:currentSub,brand:b}; document.getElementById('mainContent').innerHTML=productsPageHTML(); renderProductGrid(); }
-function clearFilters() { currentCat=''; currentSub=''; currentBrand=''; _navStack[_navStack.length-1]={page:'products',cat:'',sub:'',brand:''}; document.getElementById('mainContent').innerHTML=productsPageHTML(); renderProductGrid(); }
-
-// ── PRODUCT CARD (fast img tag + lazy load) ──
-function productCardHTML(p) {
-  return `
-  <div class="card-hover" onclick="openProduct('${p.id}')" style="background:#fff;border-radius:10px;overflow:hidden;border:1px solid rgba(212,175,55,.2);cursor:pointer;display:flex;flex-direction:column">
-    <div style="height:190px;position:relative;overflow:hidden;background:${fabBg(p.id)}">
-      ${p.image_url
-        ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'">`
-        : `<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px"><span style="font-size:44px">🧵</span><span class="cinzel" style="font-size:9px;color:rgba(232,204,106,.6);letter-spacing:3px">${(p.subcategory||'').toUpperCase()}</span></div>`}
-      ${p.is_new?`<span class="tag-new" style="position:absolute;top:10px;left:10px">New</span>`:''}
-      
-    </div>
-    <div style="padding:13px 14px 15px;display:flex;flex-direction:column;flex:1">
-      ${p.product_no ? `<span class="cinzel" style="font-size:9px;color:#C9A020;letter-spacing:1.5px;margin-bottom:4px;opacity:.7">${p.product_no}</span>` : ''}
-      <p style="font-size:14px;font-weight:600;color:#2D1458;line-height:1.35;margin-bottom:4px">${p.name}</p>
-      <p class="cinzel" style="font-size:11px;color:#C9A020;letter-spacing:.5px;margin-bottom:auto">${p.brand||''}</p>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
-        <span class="cinzel" style="font-size:15px;font-weight:700;color:#3B0764">₹${Number(p.price).toFixed(2)}<span style="font-size:10px;font-weight:400;color:#9CA3AF">/m</span></span>
-        <span class="cinzel" style="font-size:10px;color:#C9A020;letter-spacing:1px">VIEW →</span>
-      </div>
-    </div>
-  </div>`;
-}
-
-function openProduct(id) {
-  const p = allProducts.find(p=>p.id==id);
-  if (p) { currentProduct = p; _applyNav({page:'product', product:p}, true); }
-}
-
-// ── PRODUCT IMAGE SLIDER ──
-// Build image list — handles array, JSON string, or single fallback
-function buildProductImages(p) {
-  let arr = [];
-  try {
-    if (Array.isArray(p.image_urls) && p.image_urls.length > 0) {
-      arr = p.image_urls;
-    } else if (typeof p.image_urls === 'string' && p.image_urls.trim().startsWith('[')) {
-      arr = JSON.parse(p.image_urls);
-    }
-  } catch(e) { arr = []; }
-  // Filter out empty strings
-  arr = arr.filter(u => u && u.trim() !== '');
-  if (arr.length > 0) return arr;
-  if (p.image_url && p.image_url.trim()) return [p.image_url.trim()];
-  return [];
-}
-
-let _prodImgIdx = 0;
-let _prodImages = [];
-let _touchStartX = 0;
-
-// ── PRODUCT DETAIL PRICE + SIZE ──
-let _detailPricePerM = 0;
-let _detailSize = '';
-var detailSize = '';
-
-function updateDetailPrice(s) {
-  const meters = parseFloat(s) || 1;
-  const total = (meters * _detailPricePerM).toFixed(0);
-  const el = document.getElementById('detailPriceDisplay');
-  const lb = document.getElementById('detailPriceLabel');
-  if (el) el.textContent = '₹' + total;
-  if (lb) lb.textContent = 'for ' + s;
-  _detailSize = s;
-  // keep detailSize in scope for cart
-  detailSize = s;
-}
-
-function selectSize(btn, s) {
-  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  updateDetailPrice(s);
-}
-
-function initProdSlider() {
-  const p = currentProduct;
-  if (!p) return;
-  // Set price per meter for live updates
-  _detailPricePerM = Number(p.price) || 0;
-  _detailSize = '';
-  detailSize = '';
-  _prodImages = buildProductImages(p);
-  _prodImgIdx = 0;
-  renderProdSlider();
-  // Auto-select first size and show its price
-  const firstBtn = document.querySelector('.size-btn');
-  if (firstBtn) {
-    const s = firstBtn.getAttribute('data-size') || firstBtn.textContent.trim();
-    firstBtn.classList.add('active');
-    updateDetailPrice(s);
-  }
-  const wrap = document.getElementById('prodImgWrap');
-  if (wrap) {
-    wrap.addEventListener('touchstart', e => { _touchStartX = e.touches[0].clientX; }, {passive:true});
-    wrap.addEventListener('touchend', e => {
-      const dx = e.changedTouches[0].clientX - _touchStartX;
-      if (Math.abs(dx) > 50) moveProdImg(dx > 0 ? -1 : 1);
-    }, {passive:true});
-  }
-}
-
-function renderProdSlider() {
-  const wrap = document.getElementById('prodImgWrap');
-  const thumbWrap = document.getElementById('prodThumbWrap');
-  if (!wrap) return;
-  const imgs = _prodImages;
-
-  if (imgs.length === 0) {
-    wrap.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:' + fabBg(currentProduct.id) + '"><span style="font-size:80px">🧵</span></div>';
-    if (thumbWrap) thumbWrap.style.display = 'none';
+  const dark  = DARK.has(cat);
+  const items = portfolioItems.filter(p => p.category === cat);
+  if (!items.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px"><p class="cinzel" style="font-size:13px;color:${dark?'rgba(212,175,55,.35)':'rgba(59,7,100,.35)'};letter-spacing:2px">Content coming soon</p></div>`;
     return;
   }
+  grid.innerHTML = items.map(item => mkCard(item, dark)).join('');
+  setTimeout(observeCards, 50);
+}
 
-  let slidesHTML = '';
-  for (let i = 0; i < imgs.length; i++) {
-    const isFirst = (i === 0);
-    slidesHTML += '<div id="prodSlide' + i + '" style="position:absolute;inset:0;opacity:' + (isFirst ? '1' : '0') + ';transition:opacity .3s;background:#f8f4ee;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:' + (isFirst ? 'auto' : 'none') + '">'
-      + '<img src="' + imgs[i] + '" alt="Product" loading="' + (isFirst ? 'eager' : 'lazy') + '" decoding="async" style="width:100%;height:100%;object-fit:contain;display:block;cursor:pointer" onclick="openLightbox(' + i + ')">'
-      + '</div>';
+function parseUrls(item) {
+  if (item.image_urls) {
+    try {
+      const a = Array.isArray(item.image_urls) ? item.image_urls : JSON.parse(item.image_urls);
+      if (a && a.length) return a;
+    } catch (e) {}
+  }
+  return item.image_url ? [item.image_url] : [];
+}
+
+function mkCard(item, dark) {
+  const imgs  = parseUrls(item);
+  const multi = imgs.length > 1;
+  const cid   = 'pc-' + item.id;
+  const cc    = dark ? 'portfolio-card-dark' : 'portfolio-card';
+  const tc    = dark ? '#E8CC6A'               : '#3B0764';
+  const dc    = dark ? 'rgba(212,175,55,.4)'   : 'rgba(107,33,168,.25)';
+  const pc    = dark ? 'rgba(255,255,255,.82)'  : '#4B2878';
+  const bg    = dark ? 'rgba(255,255,255,.05)'  : '#fff';
+  const bc    = dark ? 'rgba(212,175,55,.15)'   : 'rgba(212,175,55,.2)';
+
+  let img = '';
+  if (!imgs.length) {
+    img = `<div class="pcard-img-panel" style="flex:0 0 55%;min-height:320px;background:linear-gradient(135deg,#1a0535,#3B0764);display:flex;align-items:center;justify-content:center"><span style="font-size:56px;opacity:.35">🖼️</span></div>`;
+  } else if (multi) {
+    const slides = imgs.map(u =>
+      `<div class="pcard-slide" style="min-width:100%;height:100%;flex-shrink:0"><img src="${eh(u)}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.style.background='#1a0535'"/></div>`
+    ).join('');
+    const dots = imgs.map((_, i) =>
+      `<button class="pcard-dot${i===0?' active':''}" onclick="gCard('${cid}',${i})"></button>`
+    ).join('');
+    img = `<div class="pcard-img-panel" style="flex:0 0 55%;min-height:320px;position:relative;overflow:hidden"><div id="${cid}" style="height:100%;min-height:320px;position:relative;overflow:hidden"><div class="pcard-track" style="display:flex;height:100%">${slides}</div><button class="pcard-arrow" onclick="mCard('${cid}',-1)" style="left:8px">&#8249;</button><button class="pcard-arrow" onclick="mCard('${cid}',1)" style="right:8px">&#8250;</button><div class="pcard-dots">${dots}</div></div></div>`;
+  } else {
+    img = `<div class="pcard-img-panel" style="flex:0 0 55%;min-height:320px;overflow:hidden"><img src="${eh(imgs[0])}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="this.parentElement.innerHTML='<div style=&quot;height:100%;background:linear-gradient(135deg,#1a0535,#3B0764);display:flex;align-items:center;justify-content:center&quot;><span style=&quot;font-size:56px;opacity:.35&quot;>🖼️</span></div>'"/></div>`;
   }
 
-  let arrowsHTML = '';
-  if (imgs.length > 1) {
-    arrowsHTML = '<button class="prod-img-arrow" onclick="moveProdImg(-1)" style="left:10px">&#8249;</button>'
-               + '<button class="prod-img-arrow" onclick="moveProdImg(1)" style="right:10px">&#8250;</button>'
-               + '<div id="imgCounter" style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);border:1px solid rgba(212,175,55,.2);border-radius:20px;padding:4px 12px;font-family:Cinzel,serif;font-size:10px;color:#3B0764;z-index:5;pointer-events:none">1/' + imgs.length + '</div>';
-  }
+  const titleHTML = item.title
+    ? eh(item.title)
+    : '<span style="opacity:.3">—</span>';
 
-  wrap.innerHTML = slidesHTML + arrowsHTML;
+  const descHTML = item.description
+    ? `<p style="color:${pc};font-size:15px;line-height:1.85;font-family:'Cormorant Garamond',serif;margin:0">${eh(item.description)}</p>`
+    : `<p style="color:${pc};font-size:13px;font-style:italic;font-family:'Cormorant Garamond',serif;opacity:.4;margin:0">—</p>`;
 
-  if (thumbWrap) {
-    if (imgs.length > 1) {
-      thumbWrap.style.display = 'flex';
-      let thumbsHTML = '';
-      for (let i = 0; i < imgs.length; i++) {
-        thumbsHTML += '<img id="prodThumb' + i + '" src="' + imgs[i] + '" onclick="gotoProdImg(' + i + ')" loading="lazy" decoding="async" style="width:60px;height:60px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid ' + (i === 0 ? '#D4AF37' : 'transparent') + ';opacity:' + (i === 0 ? '1' : '0.6') + ';transition:all .15s;flex-shrink:0">';
-      }
-      thumbWrap.innerHTML = thumbsHTML;
-    } else {
-      thumbWrap.style.display = 'none';
-    }
-  }
-}
-function moveProdImg(d) {
-  if (!_prodImages.length) return;
-  _prodImgIdx = (_prodImgIdx + d + _prodImages.length) % _prodImages.length;
-  updateProdSlider();
-}
-function gotoProdImg(i) {
-  _prodImgIdx = i;
-  updateProdSlider();
-}
-function updateProdSlider() {
-  const n = _prodImages.length;
-  // Show active slide, hide others
-  for (let i = 0; i < n; i++) {
-    const slide = document.getElementById('prodSlide' + i);
-    if (slide) {
-      slide.style.opacity = i === _prodImgIdx ? '1' : '0';
-      slide.style.pointerEvents = i === _prodImgIdx ? 'auto' : 'none';
-    }
-    // Update thumbnail borders
-    const thumb = document.getElementById('prodThumb' + i);
-    if (thumb) {
-      thumb.style.border = '2px solid ' + (i === _prodImgIdx ? '#D4AF37' : 'transparent');
-      thumb.style.opacity = i === _prodImgIdx ? '1' : '0.6';
-    }
-  }
-  // Update counter
-  const counter = document.getElementById('imgCounter');
-  if (counter) counter.textContent = (_prodImgIdx + 1) + '/' + n;
-}
-function openLightbox(idx) {
-  const url = _prodImages[idx !== undefined ? idx : _prodImgIdx];
-  if (!url) return;
-  const lb = document.createElement('div');
-  lb.className = 'lightbox';
-  lb.onclick = e => { if (e.target===lb || e.target.className==='lightbox-close') lb.remove(); };
-  // Lightbox with prev/next if multiple images
-  const nav = _prodImages.length > 1 ? `
-    <button onclick="lbNav(-1)" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center">‹</button>
-    <button onclick="lbNav(1)" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center">›</button>
-    <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-family:'Cinzel',serif;font-size:12px" id="lbCounter">${(idx||0)+1}/${_prodImages.length}</div>` : '';
-  lb.innerHTML = `<button class="lightbox-close" onclick="this.closest('.lightbox').remove()">✕</button><img id="lbImg" src="${url}" alt="Product"/>${nav}`;
-  lb.dataset.idx = idx || 0;
-  document.body.appendChild(lb);
-}
-function lbNav(d) {
-  const lb = document.querySelector('.lightbox');
-  if (!lb) return;
-  let idx = (parseInt(lb.dataset.idx) + d + _prodImages.length) % _prodImages.length;
-  lb.dataset.idx = idx;
-  document.getElementById('lbImg').src = _prodImages[idx];
-  const counter = document.getElementById('lbCounter');
-  if (counter) counter.textContent = `${idx+1}/${_prodImages.length}`;
-}
-
-// ── PRODUCT DETAIL ──
-function productDetailHTML(p) {
-  const sizes  = parseArr(p.sizes).length ? parseArr(p.sizes) : ['1.60m','1.80m','2.00m','2.15m','2.30m','1.20m','1.30m'];
-  const sizeButtons = sizes.map(s=>`<button class="filter-chip size-btn" data-size="${s}" onclick="selectSize(this,'${s}')" style="border-radius:4px">${s}</button>`).join('');
-  return `
-  <div style="max-width:1100px;margin:0 auto;padding:28px 20px;min-height:80vh">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;font-size:12px;color:#9CA3AF">
-      <button onclick="showPage('home')" class="cinzel" style="background:none;border:none;cursor:pointer;color:#5B21B6;font-size:12px">Home</button>
-      <span>›</span>
-      <button onclick="showProducts(currentCat)" class="cinzel" style="background:none;border:none;cursor:pointer;color:#5B21B6;font-size:12px">Shop</button>
-      <span>›</span><span class="cinzel" style="color:#3B0764">${p.name}</span>
-    </div>
-    <div class="detail-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
-
-      <!-- IMAGE SLIDER -->
-      <div>
-        <div class="prod-img-slider" style="height:420px;position:relative;overflow:hidden" id="prodImgWrap">
-          <div style="display:flex;align-items:center;justify-content:center;height:420px"><div class="spinner"></div></div>
-        </div>
-        <div id="prodThumbWrap" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"></div>
+  return `<div class="${cc} card-hover pcard-split" style="overflow:hidden;border-radius:18px;display:flex;flex-direction:row;min-height:320px;border:1px solid ${bc};box-shadow:0 8px 32px rgba(59,7,100,.13)">
+    ${img}
+    <div style="flex:1;background:${bg};padding:32px 28px;display:flex;flex-direction:column;justify-content:center;gap:16px">
+      <h3 style="font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:${tc};letter-spacing:1px;line-height:1.4;margin:0">${titleHTML}</h3>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,${dc},transparent)"></div>
+        <span style="color:${tc};font-size:9px;opacity:.55">✦</span>
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,${dc})"></div>
       </div>
-
-      <!-- DETAILS -->
-      <div>
-        ${p.is_new?`<span class="tag-new" style="display:inline-block;margin-bottom:12px">New Arrival</span>`:''}
-        ${p.product_no ? `<p class="cinzel" style="font-size:10px;color:#C9A020;letter-spacing:2px;margin-bottom:6px;opacity:.8">PRODUCT NO: ${p.product_no}</p>` : ''}
-        <h1 class="cormorant" style="font-size:38px;font-weight:600;color:#180626;line-height:1.2;margin-bottom:4px">${p.name}</h1>
-        <p class="cinzel" style="font-size:13px;color:#C9A020;letter-spacing:1px;margin-bottom:16px">${p.brand||''}</p>
-        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px">
-          <span class="cinzel" id="detailPriceDisplay" style="font-size:32px;font-weight:700;color:#3B0764">₹${(Number(p.price)*(parseFloat(sizes[0])||1)).toFixed(0)}</span>
-          <span style="font-size:14px;color:#9CA3AF" id="detailPriceLabel">for ${sizes[0]||'1.60m'}</span>
-        </div>
-        <p style="font-size:12px;color:#9CA3AF;margin-bottom:16px">₹${Number(p.price).toFixed(0)}/meter base rate</p>
-        <div class="ornament-line"><span class="divider-text">✦</span></div>
-        <p style="color:#2D1458;line-height:1.85;font-family:'Cormorant Garamond',serif;font-size:17px;margin:18px 0 22px">${p.description||'Premium quality fabric, sold per meter.'}</p>
-        }
-        ${sizes.length>0?`
-        <div style="margin-bottom:24px">
-          <p class="cinzel" style="font-size:10px;letter-spacing:2px;color:#C9A020;margin-bottom:10px">LENGTH (METERS)</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">${sizeButtons}</div>
-        </div>`:''}
-        <div style="display:flex;gap:12px;align-items:center;margin-top:24px">
-          <button id="addCartBtn" class="btn-purple" onclick="addCurrentToCart()" style="flex:1;padding:14px 20px;border-radius:6px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px">🛒 Add to Cart</button>
-          <button class="btn-gold" onclick="buyNow()" style="flex:1;padding:14px 20px;border-radius:6px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px">⚡ Buy Now</button>
-        </div>
-        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap">
-          ${[`Category: ${p.category||''}`,`Type: ${p.subcategory||''}`,`Brand: ${p.brand||''}`].map(t=>`<span style="background:rgba(59,7,100,.08);color:#3B0764;padding:4px 12px;border-radius:20px;font-size:12px;font-family:'Cinzel',serif">${t}</span>`).join('')}
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Fabric Guide Chart -->
-  <div style="max-width:1100px;margin:40px auto 0;padding:0 20px 40px">
-    <div style="border:1px solid rgba(212,175,55,.25);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(59,7,100,.08)">
-      <div style="background:linear-gradient(135deg,#3B0764,#4c1d95);padding:18px 28px;display:flex;align-items:center;gap:12px">
-        <span style="font-size:22px">📏</span>
-        <div>
-          <h3 class="cinzel" style="font-size:14px;font-weight:700;color:#E8CC6A;letter-spacing:2px;margin-bottom:2px">FABRIC QUANTITY GUIDE</h3>
-          <p style="font-size:11px;color:rgba(255,255,255,.5)">How many meters do you need?</p>
-        </div>
-      </div>
-      <div style="overflow-x:auto">
-        <table style="width:100%;border-collapse:collapse;font-family:'Cinzel',serif">
-          <thead>
-            <tr style="background:rgba(59,7,100,.08)">
-              <th style="padding:12px 20px;text-align:left;font-size:11px;color:#3B0764;letter-spacing:1.5px;border-bottom:2px solid rgba(212,175,55,.2)">GARMENT</th>
-              <th style="padding:12px 20px;text-align:center;font-size:11px;color:#3B0764;letter-spacing:1.5px;border-bottom:2px solid rgba(212,175,55,.2)">SIZE</th>
-              <th style="padding:12px 20px;text-align:center;font-size:11px;color:#3B0764;letter-spacing:1.5px;border-bottom:2px solid rgba(212,175,55,.2)">FABRIC NEEDED</th>
-              <th style="padding:12px 20px;text-align:left;font-size:11px;color:#3B0764;letter-spacing:1.5px;border-bottom:2px solid rgba(212,175,55,.2)">NOTES</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid rgba(212,175,55,.1)">
-              <td style="padding:14px 20px;font-size:13px;color:#2D1458;font-weight:600">Shirt</td>
-              <td style="padding:14px 20px;text-align:center;font-size:12px;color:#6B21A8;background:rgba(59,7,100,.04)">S – M</td>
-              <td style="padding:14px 20px;text-align:center;font-size:13px;font-weight:700;color:#C9A020">1.6 – 1.8 m</td>
-              <td style="padding:14px 20px;font-size:12px;color:#6B7280">For chest sizes up to 40 inches</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(212,175,55,.1);background:rgba(59,7,100,.02)">
-              <td style="padding:14px 20px;font-size:13px;color:#2D1458;font-weight:600">Shirt</td>
-              <td style="padding:14px 20px;text-align:center;font-size:12px;color:#6B21A8;background:rgba(59,7,100,.04)">L – XL</td>
-              <td style="padding:14px 20px;text-align:center;font-size:13px;font-weight:700;color:#C9A020">2.0 – 2.25 m</td>
-              <td style="padding:14px 20px;font-size:12px;color:#6B7280">For chest sizes up to 46 inches</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(212,175,55,.1)">
-              <td style="padding:14px 20px;font-size:13px;color:#2D1458;font-weight:600">Suiting</td>
-              <td style="padding:14px 20px;text-align:center;font-size:12px;color:#6B21A8;background:rgba(59,7,100,.04)">S – M</td>
-              <td style="padding:14px 20px;text-align:center;font-size:13px;font-weight:700;color:#C9A020">1.2 – 1.4 m</td>
-              <td style="padding:14px 20px;font-size:12px;color:#6B7280">Waist size up to 30 – 34 inches</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(212,175,55,.1);background:rgba(59,7,100,.02)">
-              <td style="padding:14px 20px;font-size:13px;color:#2D1458;font-weight:600">Suiting</td>
-              <td style="padding:14px 20px;text-align:center;font-size:12px;color:#6B21A8;background:rgba(59,7,100,.04)">L – XL</td>
-              <td style="padding:14px 20px;text-align:center;font-size:13px;font-weight:700;color:#C9A020">1.5 – 1.6 m</td>
-              <td style="padding:14px 20px;font-size:12px;color:#6B7280">Waist size up to 38 – 42 inches</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(212,175,55,.1)">
-              <td style="padding:14px 20px;font-size:13px;color:#2D1458;font-weight:600">Kurti</td>
-              <td style="padding:14px 20px;text-align:center;font-size:12px;color:#6B21A8;background:rgba(59,7,100,.04)">S – M</td>
-              <td style="padding:14px 20px;text-align:center;font-size:13px;font-weight:700;color:#C9A020">2.0 – 2.25 m</td>
-              <td style="padding:14px 20px;font-size:12px;color:#6B7280">Full length up to height 5'4"</td>
-            </tr>
-            <tr>
-              <td style="padding:14px 20px;font-size:13px;color:#2D1458;font-weight:600">Kurti</td>
-              <td style="padding:14px 20px;text-align:center;font-size:12px;color:#6B21A8;background:rgba(59,7,100,.04)">L – XL</td>
-              <td style="padding:14px 20px;text-align:center;font-size:13px;font-weight:700;color:#C9A020">2.5 – 2.75 m</td>
-              <td style="padding:14px 20px;font-size:12px;color:#6B7280">Full length up to height 5'8"</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div style="background:rgba(59,7,100,.04);padding:12px 20px;border-top:1px solid rgba(212,175,55,.1)">
-        <p style="font-size:11px;color:#9CA3AF;font-family:'Cormorant Garamond',serif">* Quantities are approximate. Extra 0.1–0.2m recommended for matching prints or alterations.</p>
-      </div>
-    </div>
-  </div>
-`;  // end productDetailHTML
-}
-
-// ── CART ──
-function addCurrentToCart() {
-  if (!currentProduct) return;
-  const size = (typeof detailSize !== 'undefined') ? detailSize : '1.60m';
-  const meters = parseFloat(size) || 1;
-  const calculatedPrice = (currentProduct.price * meters).toFixed(2);
-  const item = {
-    id: currentProduct.id, name: currentProduct.name, brand: currentProduct.brand,
-    product_no: currentProduct.product_no || '',
-    price: calculatedPrice,
-    pricePerM: currentProduct.price,
-    image_url: currentProduct.image_url,
-    selectedSize: size,
-    qty: 1,
-  };
-  const idx = cart.findIndex(i=>i.id===item.id&&i.selectedSize===item.selectedSize);
-  if (idx>=0) cart[idx].qty+=1; else cart.push(item);
-  localStorage.setItem('libas_cart', JSON.stringify(cart));
-  updateCartBadge();
-  const btn = document.getElementById('addCartBtn');
-  if (btn) { btn.innerHTML='✓ Added!'; setTimeout(()=>{btn.innerHTML='🛒 Add to Cart';},2000); }
-}
-
-function buyNow() {
-  if (!currentProduct) return;
-  addCurrentToCart();
-  setTimeout(()=>showPage('cart'), 300);
-}
-
-function updateCartBadge() {
-  const total = cart.reduce((s,i)=>s+i.qty,0);
-  const b = document.getElementById('cartBadge');
-  if (b) { b.textContent=total; b.style.display=total>0?'inline-flex':'none'; }
-}
-
-function cartHTML() {
-  const total = cart.reduce((s,i)=>s+Number(i.price)*i.qty,0);
-  if (!cart.length) return `
-  <div style="max-width:900px;margin:0 auto;padding:40px 20px;min-height:80vh">
-    <h2 class="cinzel" style="font-size:28px;font-weight:700;color:#3B0764;margin-bottom:8px">Your Cart</h2>
-    <div style="text-align:center;padding:80px 0">
-      <div style="font-size:64px;margin-bottom:16px">🛒</div>
-      <p class="cinzel" style="font-size:18px;color:#9CA3AF;margin-bottom:20px">Your cart is empty</p>
-      <button class="btn-gold" onclick="showProducts()" style="padding:12px 32px;border-radius:6px;font-size:13px">Start Shopping</button>
-    </div>
-  </div>`;
-  return `
-  <div style="max-width:900px;margin:0 auto;padding:40px 20px;min-height:80vh">
-    <h2 class="cinzel" style="font-size:28px;font-weight:700;color:#3B0764;margin-bottom:8px">Your Cart</h2>
-    <div class="ornament-line" style="margin-bottom:24px"><span class="divider-text">✦ Selected Fabrics ✦</span></div>
-    <div style="background:#fff;border-radius:10px;border:1px solid rgba(212,175,55,.2);overflow:hidden;margin-bottom:20px">
-      ${cart.map((item,idx)=>`
-      <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid rgba(212,175,55,.1)">
-        <div style="width:58px;height:58px;border-radius:8px;background:${fabBg(item.id)};flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:22px">
-          ${item.image_url?`<img src="${item.image_url}" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:8px"/>` : '🧵'}
-        </div>
-        <div style="flex:1">
-          <p style="font-weight:600;color:#2D1458;margin-bottom:2px">${item.name}</p>
-          ${item.product_no ? `<p class="cinzel" style="font-size:9px;color:#C9A020;letter-spacing:1px;margin-bottom:2px">${item.product_no}</p>` : ''}
-          <p class="cinzel" style="font-size:11px;color:#9CA3AF">${item.brand||''} · ${item.selectedSize||''}</p>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <button onclick="cartUpd(${idx},-1)" style="width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,.4);background:none;cursor:pointer">−</button>
-          <span class="cinzel" style="font-weight:700;min-width:20px;text-align:center">${item.qty}</span>
-          <button onclick="cartUpd(${idx},1)" style="width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,.4);background:none;cursor:pointer">+</button>
-        </div>
-        <span class="cinzel" style="font-weight:700;color:#3B0764;min-width:80px;text-align:right">₹${(Number(item.price)*item.qty).toFixed(2)}</span>
-        <button onclick="cartRm(${idx})" style="background:none;border:none;cursor:pointer;color:#DC2626;font-size:18px;padding:4px">🗑</button>
-      </div>`).join('')}
-    </div>
-    <div style="background:#fff;border-radius:10px;border:1px solid rgba(212,175,55,.2);padding:24px;max-width:380px;margin-left:auto">
-      <p class="cinzel" style="font-size:14px;font-weight:700;color:#3B0764;margin-bottom:16px;letter-spacing:1px">ORDER SUMMARY</p>
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px">
-        <span style="color:#9CA3AF">Subtotal</span><span class="cinzel" style="font-weight:600">₹${total.toFixed(2)}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:16px;font-size:14px">
-        <span style="color:#9CA3AF">Shipping</span><span style="color:#16A34A;font-size:13px">Calculated at checkout</span>
-      </div>
-      <div style="border-top:1px solid rgba(212,175,55,.25);padding-top:16px;display:flex;justify-content:space-between">
-        <span class="cinzel" style="font-weight:700;color:#3B0764">Total</span>
-        <span class="cinzel" style="font-weight:700;font-size:20px;color:#3B0764">₹${total.toFixed(2)}</span>
-      </div>
-      <button class="btn-gold" onclick="showPage('shipping')" style="width:100%;padding:14px;border-radius:6px;font-size:13px;margin-top:18px">Proceed to Checkout →</button>
+      ${descHTML}
     </div>
   </div>`;
 }
 
-function cartUpd(idx,d){cart[idx].qty=Math.max(1,cart[idx].qty+d);localStorage.setItem('libas_cart',JSON.stringify(cart));updateCartBadge();showPage('cart');}
-function cartRm(idx){cart.splice(idx,1);localStorage.setItem('libas_cart',JSON.stringify(cart));updateCartBadge();showPage('cart');}
-
-// ── SHIPPING ──
-function shippingHTML() {
-  if (!cart.length) return `<div style="max-width:600px;margin:0 auto;padding:60px 20px;text-align:center"><p class="cinzel" style="font-size:18px;color:#9CA3AF">No items in cart.</p><button class="btn-gold" onclick="showPage('home')" style="padding:12px 32px;border-radius:6px;margin-top:20px">Go Shopping</button></div>`;
-  const total = cart.reduce((s,i)=>s+Number(i.price)*i.qty,0);
-  return `
-  <div style="max-width:640px;margin:0 auto;padding:40px 20px;min-height:80vh">
-    <h2 class="cinzel" style="font-size:26px;font-weight:700;color:#3B0764">Shipping Details</h2>
-    <div class="ornament-line" style="margin-bottom:28px"><span class="divider-text">&#x2736; Delivery Information &#x2736;</span></div>
-    <div style="background:#fff;border-radius:12px;border:1px solid rgba(212,175,55,.2);padding:28px;margin-bottom:20px">
-      <div style="display:grid;gap:18px">
-        <div>
-          <label class="cinzel" style="font-size:10px;letter-spacing:2px;color:#7C3AED;display:block;margin-bottom:6px">RECEIVER NAME *</label>
-          <input id="sh_name" class="input-field" type="text" placeholder="Full name of the receiver"/>
-        </div>
-        <div>
-          <label class="cinzel" style="font-size:10px;letter-spacing:2px;color:#7C3AED;display:block;margin-bottom:6px">PHONE NUMBER *</label>
-          <input id="sh_phone" class="input-field" type="tel" placeholder="10-digit mobile number" maxlength="10"/>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-          <div>
-            <label class="cinzel" style="font-size:10px;letter-spacing:2px;color:#7C3AED;display:block;margin-bottom:6px">STATE *</label>
-            <input id="sh_state" class="input-field" type="text" placeholder="e.g. Maharashtra"/>
-          </div>
-          <div>
-            <label class="cinzel" style="font-size:10px;letter-spacing:2px;color:#7C3AED;display:block;margin-bottom:6px">CITY *</label>
-            <input id="sh_city" class="input-field" type="text" placeholder="e.g. Solapur"/>
-          </div>
-        </div>
-        <div>
-          <label class="cinzel" style="font-size:10px;letter-spacing:2px;color:#7C3AED;display:block;margin-bottom:6px">PIN CODE *</label>
-          <input id="sh_pin" class="input-field" type="text" placeholder="6-digit PIN code" maxlength="6" style="max-width:200px"/>
-        </div>
-        <div>
-          <label class="cinzel" style="font-size:10px;letter-spacing:2px;color:#7C3AED;display:block;margin-bottom:6px">FULL ADDRESS *</label>
-          <textarea id="sh_address" class="input-field" rows="3" placeholder="House/Flat No., Street, Area, Landmark..."></textarea>
-        </div>
-      </div>
-    </div>
-    <div style="background:#fff;border-radius:12px;border:1px solid rgba(212,175,55,.2);padding:20px;margin-bottom:24px">
-      <p class="cinzel" style="font-size:11px;letter-spacing:2px;color:#9CA3AF;margin-bottom:12px">ORDER SUMMARY</p>
-      ${cart.map(i=>`<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="color:#2D1458">${i.name} x${i.qty}</span><span class="cinzel" style="font-weight:600;color:#3B0764">&#8377;${(Number(i.price)*i.qty).toFixed(2)}</span></div>`).join('')}
-      <div style="border-top:1px solid rgba(212,175,55,.2);margin-top:12px;padding-top:12px;display:flex;justify-content:space-between">
-        <span class="cinzel" style="font-weight:700;color:#3B0764">Total</span>
-        <span class="cinzel" style="font-weight:700;font-size:18px;color:#3B0764">&#8377;${total.toFixed(2)}</span>
-      </div>
-    </div>
-    <button class="btn-gold" onclick="proceedToPayment()" style="width:100%;padding:16px;border-radius:8px;font-size:13px;letter-spacing:2px">
-      &#128179; PROCEED TO PAYMENT
-    </button>
-    <p style="text-align:center;font-size:11px;color:#9CA3AF;margin-top:10px">Your information is safe and secure</p>
-  </div>`;
+/* ── CARD SLIDER CONTROLS ── */
+function mCard(id, dir) {
+  const el = document.getElementById(id); if (!el) return;
+  const tr = el.querySelector('.pcard-track');
+  const n  = tr.children.length;
+  slideIdx[id] = ((slideIdx[id] || 0) + dir + n) % n;
+  applyCard(id, tr);
+}
+function gCard(id, i) {
+  const el = document.getElementById(id); if (!el) return;
+  const tr = el.querySelector('.pcard-track');
+  slideIdx[id] = i; applyCard(id, tr);
+}
+function applyCard(id, tr) {
+  const i = slideIdx[id] || 0;
+  tr.style.transform = `translateX(-${i * 100}%)`;
+  const el = document.getElementById(id);
+  if (el) el.querySelectorAll('.pcard-dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
 }
 
-async function proceedToPayment() {
-  const name    = (document.getElementById('sh_name')?.value||'').trim();
-  const phone   = (document.getElementById('sh_phone')?.value||'').trim();
-  const state   = (document.getElementById('sh_state')?.value||'').trim();
-  const city    = (document.getElementById('sh_city')?.value||'').trim();
-  const pin     = (document.getElementById('sh_pin')?.value||'').trim();
-  const address = (document.getElementById('sh_address')?.value||'').trim();
-
-  if (!name)    { showToast('Please enter receiver name','error'); return; }
-  if (!/^\d{10}$/.test(phone)) { showToast('Enter valid 10-digit phone number','error'); return; }
-  if (!state)   { showToast('Please enter state','error'); return; }
-  if (!city)    { showToast('Please enter city','error'); return; }
-  if (!/^\d{6}$/.test(pin)) { showToast('Enter valid 6-digit PIN code','error'); return; }
-  if (!address) { showToast('Please enter full address','error'); return; }
-
-  const total = cart.reduce((s,i)=>s+Number(i.price)*i.qty,0);
-  const orderData = {
-    receiver_name: name,
-    phone,
-    state,
-    city,
-    pin_code: pin,
-    full_address: address,
-    cart_items: JSON.stringify(cart),
-    total_amount: total,
-    payment_status: 'Pending',
-    order_status: 'New'
-  };
-
-  const btn = document.querySelector('[onclick="proceedToPayment()"]');
-  if (btn) { btn.disabled=true; btn.textContent='Saving...'; }
-
-  try {
-    const { error } = await sb.from('orders').insert([orderData]);
-    if (error) throw error;
-    cart = [];
-    localStorage.setItem('libas_cart', JSON.stringify(cart));
-    updateCartBadge();
-    document.getElementById('mainContent').innerHTML = `
-    <div style="max-width:560px;margin:0 auto;padding:80px 20px;text-align:center;min-height:80vh">
-      <div style="font-size:72px;margin-bottom:20px">🎉</div>
-      <h2 class="cinzel" style="font-size:28px;font-weight:700;color:#3B0764;margin-bottom:10px">Order Placed!</h2>
-      <p style="color:#6B7280;font-size:14px;margin-bottom:8px">Thank you, <b style="color:#3B0764">${name}</b>!</p>
-      <p style="color:#6B7280;font-size:13px;line-height:1.8;margin-bottom:20px">Your order of <b>₹${total.toFixed(2)}</b> has been received.<br/>We will contact you at <b>${phone}</b> to confirm your order.</p>
-      <div style="background:#fff;border:1px solid rgba(212,175,55,.3);border-radius:10px;padding:16px 20px;margin-bottom:24px;text-align:left">
-        <p class="cinzel" style="font-size:10px;color:#C9A020;letter-spacing:2px;margin-bottom:10px">ORDERED ITEMS</p>
-        ${cart.map(i=>`
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(212,175,55,.1);gap:10px">
-          <div style="flex:1">
-            ${i.product_no ? `<p class="cinzel" style="font-size:9px;color:#C9A020;letter-spacing:1px;margin-bottom:1px">${i.product_no}</p>` : ''}
-            <p style="font-size:13px;color:#2D1458;font-weight:600">${i.name}</p>
-            <p class="cinzel" style="font-size:10px;color:#9CA3AF">${i.selectedSize||''} × ${i.qty}</p>
-          </div>
-          <span class="cinzel" style="font-size:13px;font-weight:700;color:#3B0764">₹${(Number(i.price)*i.qty).toFixed(2)}</span>
-        </div>`).join('')}
-        <div style="display:flex;justify-content:space-between;padding-top:10px;margin-top:4px">
-          <span class="cinzel" style="font-size:12px;font-weight:700;color:#3B0764">Total</span>
-          <span class="cinzel" style="font-size:14px;font-weight:700;color:#3B0764">₹${total.toFixed(2)}</span>
-        </div>
-      </div>
-      <div class="ornament-line" style="margin-bottom:28px"><span class="divider-text">✦ Threads of Trust ✦</span></div>
-      <button class="btn-gold" onclick="showPage('home')" style="padding:14px 40px;border-radius:8px;font-size:13px">Continue Shopping</button>
-    </div>`;
-  } catch(err) {
-    if (btn) { btn.disabled=false; btn.textContent='PROCEED TO PAYMENT'; }
-    showToast('Could not save order. Please try again.','error');
-    console.error(err);
-  }
+/* ── HELPERS ── */
+function eh(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-// ── MISC ──
-function toggleSearch(){
-  const s=document.getElementById('searchBar');
-  s.style.display=s.style.display==='none'?'block':'none';
-  if(s.style.display==='block') document.getElementById('searchInput').focus();
-}
-function toggleMobileMenu(){
-  const m=document.getElementById('mobileMenu');
-  m.style.display=m.style.display==='none'?'block':'none';
-}
-function showToast(msg,type='info'){
-  const t=document.createElement('div');
-  t.style.cssText=`position:fixed;bottom:20px;right:20px;background:${type==='error'?'#DC2626':type==='success'?'#166534':'#3B0764'};color:#fff;padding:12px 20px;border-radius:8px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.5px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.3);border:1px solid rgba(212,175,55,.3);animation:fadeUp .3s ease`;
-  t.textContent=msg;
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),3500);
-}
-
-
-setTimeout(()=>{
-  const ls = document.getElementById('loadingScreen');
-  if (ls) ls.style.display = 'none';
-  init();
-}, 0);
+/* ── FALLBACK (in case Supabase hangs) ── */
+const _fb = setTimeout(() => { showApp(); renderBanner(); renderAll(); initReveal(); }, 3000);
+init().then(() => clearTimeout(_fb));
 </script>
 </body>
 </html>
